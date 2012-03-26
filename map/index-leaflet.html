@@ -1,14 +1,19 @@
 <html>
 <head>
   <title>Index Display</title>
-  <link rel="stylesheet" type="text/css" href="/Users/kevin/dev/js/leaflet_master/leaflet.css">
 </head>
 <body>
 
   <!-- Include styles here, as the HTML will probably be embedded into another site. -->
   <style>
   	@import url('css/style.css');
+  	@import url('libraries/leaflet-0.3.1/leaflet.css');
   </style>
+  <!--[if lte IE 8]>
+    <style>
+    	@import url('libraries/leaflet-0.3.1/leaflet.ie.css');
+    </style>
+  <![endif]-->
   
   <div id="minnpost-wrapper" style="max-width:975px">
   	<div id="controls-div">
@@ -42,7 +47,7 @@
   <script type="text/javascript" src="/Users/kevin/dev/js/jquery-minnpost.min.js"></script>
   <script type="text/javascript" src="/Users/kevin/dev/js/leaflet_master/leaflet.js"></script>
   <script type="text/javascript" src='/Users/kevin/dev/js/wax/wax.leaf.min.js'></script>
-  <script type="text/javascript" src="map-leaflet.js"></script>
+  <script type="text/javascript" src="js/map-leaflet.js"></script>
         
 </body>
 </html>

@@ -49,18 +49,18 @@ form#redist_search {
 }
 
 .legend {
-    font-family: sans-serif;
-    font-size: 0.8em;
-    line-height: 20px;
+  font-family: sans-serif;
+  font-size: 0.8em;
+  line-height: 20px;
 }
 
 .legend span {
-    height: 20px;
-    width: 20px;
-    margin-right: 5px;
-    display: block;
-    float: left;
-    clear: left;
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
+  display: block;
+  float: left;
+  clear: left;
 }
 
 .legend #leg_redistricting_0 { background-color: #B30000; }
@@ -77,4 +77,15 @@ form#redist_search {
 
 .clear {
 	clear: both;
+}
+
+#map-div {
+  height: 600px;
+  width: 50%;
+  float: left;
+}
+
+#table-div {
+  width: 50%;
+  float: left;
 }

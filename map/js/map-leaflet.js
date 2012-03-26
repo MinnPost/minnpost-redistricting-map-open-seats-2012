@@ -31,6 +31,11 @@ $(document).ready(function() {
     geocode($('#redist_query').val());
     return false;
   });
+  
+  // DataTable
+  $('#table-div table').dataTable({
+    'aaSorting': [[ 1, 'desc' ]]
+  });
 });
 
 /**

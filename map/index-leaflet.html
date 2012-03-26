@@ -8,6 +8,7 @@
   <style>
   	@import url('css/style.css');
   	@import url('libraries/leaflet-0.3.1/leaflet.css');
+  	@import url('libraries/datatables-1.9.0/css/jquery.dataTables.css');
   </style>
   <!--[if lte IE 8]>
     <style>
@@ -15,7 +16,7 @@
     </style>
   <![endif]-->
   
-  <div id="minnpost-wrapper" style="max-width:975px">
+  <div id="minnpost-wrapper">
   	<div id="controls-div">
       <form id="redist_search">
         <label for="redist_query">Search address</label>
@@ -39,7 +40,38 @@
     </div>
     
     <div class="clear"></div>
-    <div id="map-div" style="height: 600px"></div>
+    
+    <div id="map-div"></div>
+    <div id="table-div">
+      <table>
+        <thead>
+          <tr>
+            <th>District</th>
+            <th>Incumbant</th>
+          </tr>
+        </thead>
+        <tfoot>
+        </tfoot>
+        <tbody>
+          <tr>
+            <td>01A</td>
+            <td>Dan Fabian</td>
+          </tr>
+          <tr>
+            <td>01B</td>
+            <td>Debra Kiel</td>
+          </tr>
+          <tr>
+            <td>02A</td>
+            <td>David Hancock</td>
+          </tr>
+          <tr>
+            <td>02B</td>
+            <td>(empty)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <!-- Scripts -->
@@ -47,6 +79,7 @@
   <script type="text/javascript" src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
   <script type="text/javascript" src="libraries/leaflet-0.3.1/leaflet.js"></script>
   <script type="text/javascript" src="libraries/wax-6.0.0-beta1/wax.leaf.min.js"></script>
+  <script type="text/javascript" src="libraries/datatables-1.9.0/js/jquery.dataTables.min.js"></script>
   <script type="text/javascript" src="js/map-leaflet.js"></script>
         
 </body>

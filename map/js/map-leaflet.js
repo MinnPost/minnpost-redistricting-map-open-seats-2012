@@ -33,7 +33,10 @@ $(document).ready(function() {
   });
   
   // DataTable
-  $('#table-div table').dataTable({
+  $('#incumbents-running').dataTable({
+    'aaSorting': [[ 1, 'desc' ]]
+  });
+  $('#open-seats').dataTable({
     'aaSorting': [[ 1, 'desc' ]]
   });
 });

@@ -16,7 +16,7 @@ var marker;
 $(document).ready(function() {
   wax.tilejson('http://data.minnpost.s3.amazonaws.com/maps/leg_districts/leg_redistricting.json',
     function(tilejson) {
-      map = new L.Map('map-div')
+      map = new L.Map('district-map')
         .addLayer(new wax.leaf.connector(tilejson))
         .setView(new L.LatLng(46.3, -94.2), 7);
         //.setMaxBounds(new L.LatLngBounds(new L.LatLng(-97.7124, 43.125), new L.LatLng(-89.165, 49.5466)));

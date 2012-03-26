@@ -18,12 +18,8 @@
   
   <div id="minnpost-wrapper">
   	<div id="controls-div">
-      <form id="redist_search">
-        <label for="redist_query">Search address</label>
-        <input id="redist_query" type="text" />
-        <input type="submit" value="Go" />
-      </form>
       
+      <!--
     	<div class="legend" id="legend">
     		<span class="legend_color" id="leg_redistricting_0"></span>R 40 &ndash; 100<br />
     		<span class="legend_color" id="leg_redistricting_1"></span>R 30 &ndash; 40<br />
@@ -37,6 +33,7 @@
     		<span class="legend_color" id="leg_redistricting_9"></span>D 30 &ndash; 40<br />
     		<span class="legend_color" id="leg_redistricting_10"></span>D 40 &ndash; 100<br />
     	</div>
+    	-->
     </div>
     
     <div class="clear"></div>
@@ -112,7 +109,15 @@
       </table>
     </div>
     
-    <div id="map-div"></div>
+    <div id="map-div">
+      <form id="redist_search">
+        <label for="redist_query">Search address</label>
+        <input id="redist_query" type="text" />
+        <input type="submit" value="Go" />
+      </form>
+      
+      <div id="district-map"></div>
+    </div>
   </div>
 
   <!-- Scripts -->

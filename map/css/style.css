@@ -79,13 +79,13 @@ form#redist_search {
 	clear: both;
 }
 
-#map-div {
-  height: 600px;
+#map-div,
+#table-div {
   width: 50%;
   float: left;
 }
 
-#table-div {
-  width: 50%;
-  float: left;
+#district-map {
+  height: 600px;
+  width: 100%;
 }

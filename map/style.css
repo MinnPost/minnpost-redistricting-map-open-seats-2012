@@ -1,0 +1,80 @@
+#controls-div {
+	font-size: 1.4em;
+}
+
+form#redist_search {
+	float: left;
+	margin-right: 20px;
+}
+
+#legend {
+	float: left;
+	margin-bottom: 10px;
+}
+
+.wax-tooltip {
+	position:absolute;
+	right:10px;
+	top:10px;
+	padding:10px;
+	background-color:#ddd;
+	opacity:0.8;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	width: 80px;
+}
+
+#tooltip_mcdname {
+	font-weight: bold;
+	font-size: 1.3em;
+	margin-bottom: 10px;
+}
+
+.tooltip_title {
+	font-size: 1.2em;
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+
+#tooltip_edrpercent {
+	font-size: 1.1em;
+}
+
+#tooltip_percent-r {
+	font-size: 1.0em;
+}
+
+#tooltip_percent-d {
+	font-size: 1.0em;
+}
+
+.legend {
+    font-family: sans-serif;
+    font-size: 0.8em;
+    line-height: 20px;
+}
+
+.legend span {
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+    display: block;
+    float: left;
+    clear: left;
+}
+
+.legend #leg_redistricting_0 { background-color: #B30000; }
+.legend #leg_redistricting_1 { background-color: #E34A33; }
+.legend #leg_redistricting_2 { background-color: #FC8D59; }
+.legend #leg_redistricting_3 { background-color: #FDBB84; }
+.legend #leg_redistricting_4 { background-color: #FDD49E; }
+.legend #leg_redistricting_5 { background-color: #FFFFFF; }
+.legend #leg_redistricting_6 { background-color: #D0D1E6; }
+.legend #leg_redistricting_7 { background-color: #A6BDDB; }
+.legend #leg_redistricting_8 { background-color: #74A9CF; }
+.legend #leg_redistricting_9 { background-color: #2B8CBE; }
+.legend #leg_redistricting_10 { background-color: #045A8D; }
+
+.clear {
+	clear: both;
+}

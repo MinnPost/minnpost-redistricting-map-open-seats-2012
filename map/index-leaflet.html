@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Tilemill Map Demo</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="/Users/kevin/dev/js/leaflet_master/leaflet.css">
+    </head>
+    <body>
+
+    <div id="minnpost-wrapper" style="max-width:975px">
+    	<div id="controls-div">
+    	    <form id="redist_search">
+            	<label for="redist_query">Search address</label>
+            	<input id="redist_query" type="text" />
+        		<input type="submit" value="Go" />
+        	</form>
+        	<div class="legend" id="legend">
+        		<span class="legend_color" id="leg_redistricting_0"></span>R 40 &ndash; 100<br />
+        		<span class="legend_color" id="leg_redistricting_1"></span>R 30 &ndash; 40<br />
+        		<span class="legend_color" id="leg_redistricting_2"></span>R 20 &ndash; 30<br />
+        		<span class="legend_color" id="leg_redistricting_3"></span>R 10 &ndash; 20<br />
+        		<span class="legend_color" id="leg_redistricting_4"></span>R 2 &ndash; 10<br />
+        		<span class="legend_color" id="leg_redistricting_5"></span>Even<br />
+        		<span class="legend_color" id="leg_redistricting_6"></span>D 2 &ndash; 10<br />
+        		<span class="legend_color" id="leg_redistricting_7"></span>D 10 &ndash; 20<br />
+        		<span class="legend_color" id="leg_redistricting_8"></span>D 20 &ndash; 30<br />
+        		<span class="legend_color" id="leg_redistricting_9"></span>D 30 &ndash; 40<br />
+        		<span class="legend_color" id="leg_redistricting_10"></span>D 40 &ndash; 100<br />
+        	</div>
+        </div>
+        <div class="clear"></div>
+        <div id='map-div' style="height: 600px"></div>
+    </div>
+
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+        <script type="text/javascript" src="/Users/kevin/dev/js/jquery-minnpost.min.js"></script>
+        <script type="text/javascript" src="/Users/kevin/dev/js/leaflet_master/leaflet.js"></script>
+        <script type="text/javascript" src='/Users/kevin/dev/js/wax/wax.leaf.min.js'></script>
+        <script type="text/javascript" src="map-leaflet.js"></script>
+    </body>
+</html>

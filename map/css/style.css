@@ -51,6 +51,9 @@ form#redist_search {
 	font-size: 1.0em;
 }
 
+/**
+ * Tabs
+ */
 .tabs-tab {
   min-height: 660px;
 }
@@ -59,6 +62,28 @@ form#redist_search {
   padding: 1em 0;
 }
 
+.ui-widget-header {
+  background-image: none;
+  background-color: #F0F0F5;
+}
+
+.ui-widget-content {
+  border-color: #CDCDD0;
+}
+
+.ui-widget-content .ui-state-default {
+  background-image: none;
+  background-color: #CDCDD0;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active {
+  background-color: #FFFFFF;
+}
+
+
+/**
+ * Legend
+ */
 .legend {
   font-family: sans-serif;
   font-size: 0.8em;
@@ -90,6 +115,9 @@ form#redist_search {
 	clear: both;
 }
 
+/**
+ * Layout
+ */
 #map-div,
 #table-div {
   width: 50%;
@@ -111,7 +139,9 @@ form#redist_search {
   width: 100%;
 }
 
-
+/**
+ * Tables
+ */
 body table.datatable tr.odd,
 body table.datatable tr.odd td.sorting_1 {
   background-color: #FDFDFD;

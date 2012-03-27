@@ -46,11 +46,11 @@ $(document).ready(function() {
     
   // Handle looking up address form.
   $("#redist-search-house").submit(function() {
-    geocode($('#redist_query').val(), 'house');
+    geocode($('#redist-query-house').val(), 'house');
     return false;
   });
   $("#redist-search-senate").submit(function() {
-    geocode($('#redist_query').val(), 'senate');
+    geocode($('#redist-query-senate').val(), 'senate');
     return false;
   });
   
@@ -62,9 +62,10 @@ $(document).ready(function() {
   // District selecting
   $.getJSON('data/L2012-shp-bounding_box.json', function(data) {
     // Add click events
-    $('#tabs-house table tbody tr').click(function() {
+    $('#tabs-house table tbody tr').live('click', function() {
       // Get districts
       var district = $('td.district', this).text();
+      
       if (data[district] !== undefined) {
         district = data[district];
         
@@ -77,6 +78,41 @@ $(document).ready(function() {
       }
     });
   });
+  
+  
+  // Table making (remove for production)
+  /*
+  $.getJSON('data/open_seats_house.json', function(data) {
+    var table = $('<table></table>');
+    for (var i in data) {
+      var row = '';
+      row += '\n\n                <tr>';
+      row += '\n                  <td class="district">' + data[i]['District'] + '</td>';
+      if (data[i]["Retire?"] == "1") {
+        row += '\n                  <td>' + data[i]["Retiree"];
+        if (data[i]["Retiree party"] == 'DFL') {
+          row += '<span class="inc-dfl"></span>';
+        }
+        else {
+          row += '<span class="inc-r"></span>';
+        }
+        row += '</td>'
+      }
+      else {
+        row += '\n                  <td>(open)</td>';
+      }
+      row += '\n                  <td class="leaning-';
+      row += (data[i]["RPVI"].indexOf('R') >= 0) ? 'r' : '';
+      row += (data[i]["RPVI"].indexOf('D') >= 0) ? 'dfl' : '';
+      row += (data[i]["RPVI"].indexOf('EVE') >= 0) ? 'even' : '';
+      row += '">' + data[i]["RPVI"] + '</td>\n';
+      row += '\n                </tr>';
+      
+      table.append($(row));
+    }
+    $('body').append(table);
+  });
+  */
 });
 
 /**

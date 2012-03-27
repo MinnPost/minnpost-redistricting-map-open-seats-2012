@@ -16,3 +16,4 @@ SELECT
 FROM
 	redistricting_map;
 ```
+ - Converted this output to CSV, then to JSON with csvjson (csvkit).

@@ -1,0 +1,49 @@
+2010_General_Results_Final.xls downloaded from http://www.sos.state.mn.us/Modules/ShowDocument.aspx?documentid=9737 3/20/12
+
+in2csv 2010_General_Results_Final.xls > 2010_general_results.csv
+csvcut -c 1,2,3,4,8,9,10,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44 2010_general_results.csv > 2010_general_results_cut.csv
+
+
+calculate_final.py creates a new column: SPVI
+
+SPVI is a partisan voter index, using results from the governor race in 2010.
+The state's spvi was -0.0, so the offset doesn't matter (but is still included).
+A negative spvi means a leaning toward the democratic candidate.
+The number is in percentage points.
+1000 is given to precincts where total votes for governor were 0.
+
+Function for converting pos/neg spvi to readable spvi
+=IF(BB2 > 0;CONCATENATE("R+";ABS(BB2));IF(BB2 = 0;"EVEN";CONCATENATE("D+";ABS(BB2))))
+
+
+2008_general_results.xls downloaded from http://www.sos.state.mn.us/Modules/ShowDocument.aspx?documentid=5332 3/22/12
+
+in2csv 2008_general_results.xls > 2008_general_results.csv
+csvcut -c 1,2,11,12,13,14,24,25,26,27,28,29,30,31,32,40,41,42,43,44,45,46,47,48,49,50,51,52,53 2008_general_results.csv > 2008_general_results_cut.csv
+
+
+We lose about 64 records during the join because some precincts have changed their codes, or are completely different. This seems to be odd given the two year difference.
+
+
+STEPS IN QGIS:
+- import spvi.csv
+- import with_ctupre/shortened_field_names/vtd_20101029
+- join on CTUPRE
+- save this layer in joined/vtd_20101029_with_spvi/vtd_20101029
+- create a new project
+- import joined/vtd_20101029_with_spvi/vtd_20101029
+- import L2012-shp/L2012
+- menu Vector => Data management tools => Join attributes by location
+- target is L2012, join vector layer is vtd_20101029, take summary of interesting features, mean
+- save in /L2012-shp_with_spvi_rounded/L2012
+- copy L2012 into /L2012-shp_with_spvi
+- open .dbf with OpenOffice
+- use this formula to create readable spvi: =IF(BH2 > 0;CONCATENATE("R+";ABS(ROUND(BH2)));IF(ROUND(BH2) = 0;"EVEN";CONCATENATE("D+";ABS(ROUND(BH2)))))
+- delete all other MEAN* garbage columns
+
+
+To create a csv of change between old and new district political leanings (using same spvi calculation):
+- save both .dbf files as csv
+- run this command: csvjoin -c 2,3 old-districts_spvi.csv L2012_spvi.csv | csvcut -c 18,13,15,67,69 > spvi_joined.csv
+- MEANSPVI,N,24,16 (the first MEANSPVI) and the first RSPVI are from the old districts
+- MEANSPVI,N,19,15 (the second MEANSPVI) and the second RSPVI are from the new districts

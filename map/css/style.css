@@ -5,7 +5,6 @@
 /**
  * Map
  */
-
 form.redist-search {
 	float: right;
   margin-bottom: 3%;
@@ -142,6 +141,10 @@ form.redist-search {
 #district-map-senate {
   height: 600px;
   width: 100%;
+}
+
+#minnpost-redist-wrapper h2 {
+  margin-bottom: 1em;
 }
 
 /**

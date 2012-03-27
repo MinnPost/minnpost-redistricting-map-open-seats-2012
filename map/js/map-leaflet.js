@@ -62,7 +62,7 @@ $(document).ready(function() {
   // District selecting
   $.getJSON('data/L2012-shp-bounding_box.json', function(data) {
     // Add click events
-    $('table tbody tr').click(function() {
+    $('#tabs-house table tbody tr').click(function() {
       // Get districts
       var district = $('td.district', this).text();
       if (data[district] !== undefined) {

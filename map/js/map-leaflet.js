@@ -45,14 +45,16 @@ $(document).ready(function() {
     $('table tbody tr').click(function() {
       // Get districts
       var district = $('td.district', this).text();
-      district = data[district];
-      
-      // Zoom in
-      var bounds = new L.LatLngBounds();
-      for (var i in district.geom.coordinates[0]) {
-        bounds.extend(new L.LatLng(district.geom.coordinates[0][i][1], district.geom.coordinates[0][i][0]));
+      if (data[district] !== undefined) {
+        district = data[district];
+        
+        // Zoom in
+        var bounds = new L.LatLngBounds();
+        for (var i in district.geom.coordinates[0]) {
+          bounds.extend(new L.LatLng(district.geom.coordinates[0][i][1], district.geom.coordinates[0][i][0]));
+        }
+        map.fitBounds(bounds);
       }
-      map.fitBounds(bounds);
     });
   });
 });

@@ -34,10 +34,10 @@ $(document).ready(function() {
   
   // DataTable
   $('#incumbents-running').dataTable({
-    'aaSorting': [[ 1, 'desc' ]]
+    'aaSorting': [[ 0, 'asc' ]]
   });
   $('#open-seats').dataTable({
-    'aaSorting': [[ 1, 'desc' ]]
+    'aaSorting': [[ 0, 'asc' ]]
   });
   
   $.getJSON('data/L2012-shp-bounding_box.json', function(data) {

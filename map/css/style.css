@@ -1,13 +1,18 @@
 /**
  * CSS for redistricting map.
  */
-#controls-div {
-	font-size: 1.4em;
-}
+ 
+/**
+ * Map
+ */
 
-form#redist_search {
+form.redist-search {
 	float: right;
   margin-bottom: 3%;
+}
+
+#controls-div {
+	font-size: 1.4em;
 }
 
 #legend {
@@ -80,7 +85,6 @@ form#redist_search {
   background-color: #FFFFFF;
 }
 
-
 /**
  * Legend
  */
@@ -118,14 +122,14 @@ form#redist_search {
 /**
  * Layout
  */
-#map-div,
-#table-div {
+.map-div,
+.table-div {
   width: 50%;
   float: left;
   margin-bottom: 2%;
 }
 
-#table-div {
+.table-div {
   width: 48%;
   margin-right: 2%;
 }
@@ -134,7 +138,8 @@ form#redist_search {
   margin-bottom: 2.5em;
 }
 
-#district-map {
+#district-map-house,
+#district-map-senate {
   height: 600px;
   width: 100%;
 }

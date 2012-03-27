@@ -39,6 +39,23 @@ $(document).ready(function() {
   $('#open-seats').dataTable({
     'aaSorting': [[ 1, 'desc' ]]
   });
+  
+  $.getJSON('data/L2012-shp-bounding_box.json', function(data) {
+    console.log(data);
+    // Add click events
+    $('table tbody tr').click(function() {
+      // Get districts
+      var district = $('td.district', this).text();
+      district = data[district];
+      
+      // Zoom in
+      var bounds = new L.LatLngBounds();
+      for (var i in district.geom.coordinates[0]) {
+        bounds.extend(new L.LatLng(district.geom.coordinates[0][i][1], district.geom.coordinates[0][i][0]));
+      }
+      map.fitBounds(bounds);
+    });
+  });
 });
 
 /**

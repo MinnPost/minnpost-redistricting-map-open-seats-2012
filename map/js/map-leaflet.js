@@ -41,7 +41,6 @@ $(document).ready(function() {
   });
   
   $.getJSON('data/L2012-shp-bounding_box.json', function(data) {
-    console.log(data);
     // Add click events
     $('table tbody tr').click(function() {
       // Get districts

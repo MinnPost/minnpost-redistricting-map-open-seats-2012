@@ -51,6 +51,14 @@ form#redist_search {
 	font-size: 1.0em;
 }
 
+.tabs-tab {
+  min-height: 660px;
+}
+
+.ui-tabs .ui-tabs-panel {
+  padding: 1em 0;
+}
+
 .legend {
   font-family: sans-serif;
   font-size: 0.8em;

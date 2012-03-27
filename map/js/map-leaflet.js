@@ -14,6 +14,7 @@ var marker;
  * Document ready event.
  */
 $(document).ready(function() {
+  // Map, legislating district.
   wax.tilejson('http://data.minnpost.s3.amazonaws.com/maps/leg_districts/leg_redistricting.json',
     function(tilejson) {
       map = new L.Map('district-map')
@@ -40,6 +41,10 @@ $(document).ready(function() {
     'aaSorting': [[ 0, 'asc' ]]
   });
   
+  // Tabs
+  $('#tabs').tabs();
+  
+  // District selecting
   $.getJSON('data/L2012-shp-bounding_box.json', function(data) {
     // Add click events
     $('table tbody tr').click(function() {

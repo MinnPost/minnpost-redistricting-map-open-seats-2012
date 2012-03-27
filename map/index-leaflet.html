@@ -20,7 +20,7 @@
     </style>
   <![endif]-->
   
-  <div id="minnpost-wrapper" class="content node-field-body">
+  <div id="minnpost-redist-wrapper" class="content node-field-body">
   	<div id="controls-div">
       
       <!--
@@ -47,9 +47,103 @@
     </ul>
     
       <div id="tabs-house" class="tabs-tab">
-        <div id="table-div">
+        <div class="table-div">
           <div class="table-containter">
-            <h2>Incumbents running in hostile territory</h2>
+            <h2>House Incumbents running in hostile territory</h2>
+            <table id="incumbents-running-house">
+              <thead>
+                <tr>
+                  <th>District</th>
+                  <th>Incumbent(s)</th>
+                  <th>Political Leaning</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="district">01A</td>
+                  <td>Dan Fabian</td>
+                  <td class="leaning-r">R</td>
+                </tr>
+                <tr>
+                  <td class="district">01B</td>
+                  <td>Debra Kiel</td>
+                  <td class="leaning-dfl">D</td>
+                </tr>
+                <tr>
+                  <td class="district">02A</td>
+                  <td>David Hancock</td>
+                  <td class="leaning-r">R</td>
+                </tr>
+                <tr>
+                  <td class="district">02B</td>
+                  <td>(empty)</td>
+                  <td class="leaning-dfl">D</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        
+          <div class="table-containter">
+            <h2>Open seats and political leaning</h2>
+            <table id="open-seats-house">
+              <thead>
+                <tr>
+                  <th>District</th>
+                  <th>Retiring Incumbent</th>
+                  <th>Political Leaning</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="district">01A</td>
+                  <td>Dan Fabian (S)<span class="inc-r"></span></td>
+                  <td class="leaning-dfl">30%</td>
+                </tr>
+                <tr>
+                  <td class="district">01B</td>
+                  <td>Debra Kiel<span class="inc-dfl"></span></td>
+                  <td class="leaning-dfl">60%</td>
+                </tr>
+                <tr>
+                  <td class="district">02A</td>
+                  <td>David Hancock<span class="inc-dfl"></span></td>
+                  <td class="leaning-r">R</td>
+                </tr>
+                <tr>
+                  <td class="district">02B</td>
+                  <td>(none)</td>
+                  <td class="leaning-r">R</td>
+                </tr>
+                <tr>
+                  <td class="district">02B</td>
+                  <td>David Hancock<span class="inc-dfl"></span>, <br>David Hancock<span class="inc-r"></span></td>
+                  <td class="leaning-r">R</td>
+                </tr>
+                <tr>
+                  <td class="district">02B</td>
+                  <td>David Hancock</td>
+                  <td class="leaning-r">R</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    
+        <div class="map-div">
+          <form id="redist-search-house" class="redist-search">
+            <label for="redist_query">Search address</label>
+            <input id="redist_query" type="text" />
+            <input type="submit" value="Go" />
+          </form>
+          
+          <div id="district-map-house"></div>
+        </div>
+      </div>
+      
+      <div id="tabs-senate" class="tabs-tab">
+        <div class="table-div">
+          <div class="table-containter">
+            <h2>Senate Incumbents running in hostile territory</h2>
             <table id="incumbents-running">
               <thead>
                 <tr>
@@ -129,19 +223,15 @@
           </div>
         </div>
     
-        <div id="map-div">
-          <form id="redist_search">
+        <div class="map-div">
+          <form id="redistr-search-senate" class="redist-search">
             <label for="redist_query">Search address</label>
             <input id="redist_query" type="text" />
             <input type="submit" value="Go" />
           </form>
           
-          <div id="district-map"></div>
+          <div id="district-map-senate"></div>
         </div>
-      </div>
-      
-      <div id="tabs-senate" class="tabs-tab">
-        yo.
       </div>
     </div>
   </div>

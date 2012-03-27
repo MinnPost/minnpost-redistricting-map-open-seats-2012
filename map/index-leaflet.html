@@ -6,6 +6,7 @@
 
   <!-- Include styles here, as the HTML will probably be embedded into another site. -->
   <style>
+  	@import url('css/minnpost-styles.css');
   	@import url('css/style.css');
   	@import url('libraries/leaflet-0.3.1/leaflet.css');
   	@import url('libraries/datatables-1.9.0/css/jquery.dataTables.css');
@@ -16,7 +17,7 @@
     </style>
   <![endif]-->
   
-  <div id="minnpost-wrapper">
+  <div id="minnpost-wrapper" class="content node-field-body">
   	<div id="controls-div">
       
       <!--
@@ -36,77 +37,80 @@
     	-->
     </div>
     
-    <div class="clear"></div>
     <div id="table-div">
-      <h2>Incumbents running in hostile territory</h2>
-      <table id="incumbents-running">
-        <thead>
-          <tr>
-            <th>District</th>
-            <th>Incumbent(s)</th>
-            <th>Political Leaning</th>
-          </tr>
-        </thead>
-        <tfoot>
-        </tfoot>
-        <tbody>
-          <tr>
-            <td class="district">01A</td>
-            <td>Dan Fabian</td>
-            <td class="leaning-dfl">D</td>
-          </tr>
-          <tr>
-            <td class="district">01B</td>
-            <td>Debra Kiel</td>
-            <td class="leaning-dfl">D</td>
-          </tr>
-          <tr>
-            <td class="district">02A</td>
-            <td>David Hancock</td>
-            <td class="leaning-dfl">D</td>
-          </tr>
-          <tr>
-            <td class="district">02B</td>
-            <td>(empty)</td>
-            <td class="leaning-dfl">D</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-containter">
+        <h2>Incumbents running in hostile territory</h2>
+        <table id="incumbents-running">
+          <thead>
+            <tr>
+              <th>District</th>
+              <th>Incumbent(s)</th>
+              <th>Political Leaning</th>
+            </tr>
+          </thead>
+          <tfoot>
+          </tfoot>
+          <tbody>
+            <tr class="leaning-r">
+              <td class="district">01A</td>
+              <td>Dan Fabian</td>
+              <td>R</td>
+            </tr>
+            <tr class="leaning-dfl">
+              <td class="district">01B</td>
+              <td>Debra Kiel</td>
+              <td>D</td>
+            </tr>
+            <tr class="leaning-r">
+              <td class="district">02A</td>
+              <td>David Hancock</td>
+              <td>R</td>
+            </tr>
+            <tr class="leaning-dfl">
+              <td class="district">02B</td>
+              <td>(empty)</td>
+              <td>D</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     
-      <h2>Open seats and political leaning</h2>
-      <table id="open-seats">
-        <thead>
-          <tr>
-            <th>District</th>
-            <th>Incumbent(s)</th>
-            <th>Political Leaning</th>
-          </tr>
-        </thead>
-        <tfoot>
-        </tfoot>
-        <tbody>
-          <tr>
-            <td class="district">01A</td>
-            <td>Dan Fabian</td>
-            <td class="leaning-dfl">D</td>
-          </tr>
-          <tr>
-            <td class="district">01B</td>
-            <td>Debra Kiel</td>
-            <td class="leaning-dfl">D</td>
-          </tr>
-          <tr>
-            <td class="district">02A</td>
-            <td>David Hancock</td>
-            <td class="leaning-dfl">D</td>
-          </tr>
-          <tr>
-            <td class="district">02B</td>
-            <td>(empty)</td>
-            <td class="leaning-dfl">D</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="table-containter">
+        <h2>Open seats and political leaning</h2>
+        <table id="open-seats">
+          <thead>
+            <tr>
+              <th>District</th>
+              <th>Party Leaning</th>
+              <th>Retiring Incumbent</th>
+            </tr>
+          </thead>
+          <tfoot>
+          </tfoot>
+          <tbody>
+            <tr class="leaning-dfl">
+              <td class="district">01A</td>
+              <td>30%</td>
+              <td>Dan Fabian</td>
+            </tr>
+            <tr class="leaning-dfl">
+              <td class="district">01B</td>
+              <td>60%</td>
+              <td>Debra Kiel</td>
+            </tr>
+            <tr class="leaning-r">
+              <td class="district">02A</td>
+              <td>R</td>
+              <td>David Hancock</td>
+            </tr>
+            <tr class="leaning-r">
+              <td class="district">02AB</td>
+              <td>R</td>
+              <td>David Hancock</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     
     <div id="map-div">

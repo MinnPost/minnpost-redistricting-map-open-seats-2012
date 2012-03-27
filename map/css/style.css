@@ -1,10 +1,13 @@
+/**
+ * CSS for redistricting map.
+ */
 #controls-div {
 	font-size: 1.4em;
 }
 
 form#redist_search {
-	float: left;
-	margin-right: 20px;
+	float: right;
+  margin-bottom: 3%;
 }
 
 #legend {
@@ -83,9 +86,46 @@ form#redist_search {
 #table-div {
   width: 50%;
   float: left;
+  margin-bottom: 2%;
+}
+
+#table-div {
+  width: 48%;
+  margin-right: 2%;
+}
+
+.table-containter {
+  margin-bottom: 2.5em;
 }
 
 #district-map {
   height: 600px;
   width: 100%;
+}
+
+table tr.leaning-dfl,
+body table.datatable tr.leaning-dfl {
+  background-color: #809FBC;
+}
+body table.datatable tr.leaning-dfl td.sorting_1 {
+  background-color: #A8BDD1;
+}
+table tr.leaning-r,
+body table.datatable tr.leaning-r {
+  background-color: #A75859;
+}
+body table.datatable tr.leaning-r td.sorting_1 {
+  background-color: #B9797A;
+}
+
+body table.datatable tr {
+  cursor: pointer;
+}
+
+.dataTables_length,
+.dataTables_filter,
+.dataTables_info,
+.dataTables_paginate {
+  color: #666666;
+  font-size: 80%;
 }

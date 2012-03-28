@@ -91,11 +91,19 @@ form.redist-search {
 
 .ui-widget-header {
   background-image: none;
-  background-color: #F0F0F5;
+  background-color: inherit;
+  border-bottom: 1px solid #AAAAAA;
 }
 
 .ui-widget-content {
-  border-color: #CDCDD0;
+  border: none;
+}
+
+body ul.ui-corner-all,
+li.ui-corner-top {
+  -moz-border-radius: 0;
+  -webkit-border-radius: 0;
+  border-radius: 0;
 }
 
 .ui-widget-content .ui-state-default {
@@ -271,7 +279,7 @@ body table.datatable tr {
       <div id="tabs-house" class="tabs-tab">
         <div class="table-div">
           <div class="table-containter">
-            <h2>House open seats and district political leaning</h2>
+            <h2>House incumbents running in hostile territory</h2>
             <div class="table-help">Click any row to view district on map.</div>
             <table id="incumbents-running-house">
               <thead>
@@ -527,7 +535,7 @@ body table.datatable tr {
       <div id="tabs-senate" class="tabs-tab">
         <div class="table-div">
           <div class="table-containter">
-            <h2>Senate open seats and district political leaning</h2>
+            <h2>Senate incumbents running in hostile territory</h2>
             <div class="table-help">Click any row to view district on map.</div>
             <table id="incumbents-running">
               <thead>

@@ -487,22 +487,22 @@ body table.datatable tr {
               </thead>
               <tbody>
                 <tr>
-                  <td class="district">01A</td>
+                  <td class="district">06</td>
                   <td>Dan Fabian</td>
                   <td class="leaning-r">R</td>
                 </tr>
                 <tr>
-                  <td class="district">01B</td>
+                  <td class="district">07</td>
                   <td>Debra Kiel</td>
                   <td class="leaning-dfl">D</td>
                 </tr>
                 <tr>
-                  <td class="district">02A</td>
+                  <td class="district">08</td>
                   <td>David Hancock</td>
                   <td class="leaning-r">R</td>
                 </tr>
                 <tr>
-                  <td class="district">02B</td>
+                  <td class="district">09</td>
                   <td>(empty)</td>
                   <td class="leaning-dfl">D</td>
                 </tr>
@@ -522,22 +522,22 @@ body table.datatable tr {
               </thead>
               <tbody>
                 <tr>
-                  <td class="district">01A</td>
+                  <td class="district">01</td>
                   <td>Dan Fabian (S)<span class="inc-r"></span></td>
                   <td class="leaning-dfl">30%</td>
                 </tr>
                 <tr>
-                  <td class="district">01B</td>
+                  <td class="district">04</td>
                   <td>Debra Kiel<span class="inc-dfl"></span></td>
                   <td class="leaning-dfl">60%</td>
                 </tr>
                 <tr>
-                  <td class="district">02A</td>
+                  <td class="district">02</td>
                   <td>David Hancock<span class="inc-dfl"></span></td>
                   <td class="leaning-r">R</td>
                 </tr>
                 <tr>
-                  <td class="district">02B</td>
+                  <td class="district">03</td>
                   <td>(none)</td>
                   <td class="leaning-r">R</td>
                 </tr>
@@ -628,7 +628,7 @@ $(document).ready(function() {
           // Tabs here to ensure all is loaded.
           $('#tabs').tabs();
   
-          // District selecting
+          // House District selecting
           $.ajax({
             type: 'GET',
             dataType: 'jsonp',
@@ -636,7 +636,9 @@ $(document).ready(function() {
             jsonp: 'callback',
             jsonpCallback: function(data) {
               boundingBox = function(data) {
-                data = $.parseJSON(data);
+                if (typeof data == 'string') {
+                  data = $.parseJSON(data);
+                }
                 // Add click events
                 $('#tabs-house table tbody tr').live('click', function() {
                   // Get districts
@@ -655,6 +657,41 @@ $(document).ready(function() {
                       bounds.extend(new L.LatLng(district.geom.coordinates[0][i][1], district.geom.coordinates[0][i][0]));
                     }
                     redistrMap.house.fitBounds(bounds);
+                  }
+                });
+              }
+            }
+          });
+  
+          // Senate District selecting
+          $.ajax({
+            type: 'GET',
+            dataType: 'jsonp',
+            url: 'http://data.minnpost.s3.amazonaws.com/maps/leg_districts/bbox/L2012-S-shp-bounding_box.jsonp?callback=boundingBoxSenate',
+            jsonp: 'callback',
+            jsonpCallback: function(data) {
+              boundingBoxSenate = function(data) {
+                if (typeof data == 'string') {
+                  data = $.parseJSON(data);
+                }
+                // Add click events
+                $('#tabs-senate table tbody tr').live('click', function() {
+                  // Get districts
+                  var district = $('td.district', this).text();
+                  
+                  if (data[district] !== undefined) {
+                    district = data[district];
+                    
+                    // Mark row
+                    $('#tabs-senate table tbody tr').removeClass('district-choice');
+                    $(this).addClass('district-choice');
+                    
+                    // Zoom in
+                    var bounds = new L.LatLngBounds();
+                    for (var i in district.geom.coordinates[0]) {
+                      bounds.extend(new L.LatLng(district.geom.coordinates[0][i][1], district.geom.coordinates[0][i][0]));
+                    }
+                    redistrMap.senate.fitBounds(bounds);
                   }
                 });
               }

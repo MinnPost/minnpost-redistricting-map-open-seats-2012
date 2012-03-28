@@ -26,8 +26,8 @@ $(document).ready(function() {
       // Add wax interaction with UTFGrid data.
       interaction = wax.leaf.interaction(map.house, tilejson);
       
-      // Map, house legislating district.
-      wax.tilejson('http://data.minnpost.s3.amazonaws.com/maps/leg_districts/leg_redistricting.json',
+      // Map, senate legislating district.
+      wax.tilejson('http://data.minnpost.s3.amazonaws.com/maps/leg_districts/leg_redistricting_senate.json',
         function(tilejson) {
           map.senate = new L.Map('district-map-senate')
             .addLayer(new wax.leaf.connector(tilejson))

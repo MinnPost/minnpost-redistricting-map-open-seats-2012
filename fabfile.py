@@ -7,13 +7,13 @@ from fabric.api import local
 
 # #
 # A list of maps to be used when calling deploy_all()
-MAPS_LIST = ['leg_redistricting']
+MAPS_LIST = ['leg_redistricting, leg_redistricting_senate']
 
 # #
 # Directories for retrieving/storing various files
 MAPBOX_PROJECTS_DIRECTORY = '/Users/kevin/Documents/MapBox/project/'
 MAPBOX_EXPORT_DIRECTORY = '/Users/kevin/Documents/MapBox/export/'
-PROJECT_DIRECTORY = '/Users/kevin/dropbox/minnpost/redistricting-map-open-seats-2012/'
+PROJECT_DIRECTORY = '/Users/kevin/minnpost/redistricting-map-open-seats-2012/'
 S3_DIRECTORY_S3CMD = 's3://data.minnpost/maps/leg_districts/'
 S3_DIRECTORY = 'data.minnpost/maps/leg_districts/'
 
@@ -33,11 +33,20 @@ def deploy_all():
         deploy_map(map)
         deploy_json(map)
 
+def setup_deploy_map(map):
+    """
+    Calls copy_map_dirs, extract_tiles, deploy_map and deploy_json.
+    """
+    copy_map_dirs(map)
+    extract_tiles(map)
+    deploy_map(map)
+    deploy_json(map)
+
 def deploy_json(map):
     """
     Sends json file to s3
     """
-    command = 's3cmd put -P ' + PROJECT_DIRECTORY + 'map/js/' + map + '.json ' + S3_DIRECTORY_S3CMD
+    command = 's3cmd put -P ' + PROJECT_DIRECTORY + 'map/data/' + map + '.json ' + S3_DIRECTORY_S3CMD
     local(command)
 
 def copy_map_dirs(map):

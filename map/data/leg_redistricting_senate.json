@@ -1,0 +1,31 @@
+grid({
+    "center": [
+        0,
+        0,
+        4
+    ],
+    "id": "leg_redistricting",
+    "scheme": "tms",
+    "bounds": [
+        -101.217,
+        42.9966,
+        -86.0779,
+        49.5038
+    ],
+    "minzoom": 6,
+    "maxzoom": 12,
+    "legend": "",
+    "name": "Leg redistricting",
+    "description": "",
+    "version": "1.0.0",
+    "template": "{{#__location__}}{{/__location__}}{{#__teaser__}}<div id='tooltip_distname'>District {{{DISTRICT}}}</div><div id='tooltip_pvi'>PVI: {{{RSPVI}}}</div>{{/__teaser__}}{{#__full__}}{{/__full__}}",
+    "legend": "<div class=\"legend\" id=\"legend\"><span class=\"legend_color\" id=\"same_day_registration_5\"></span>40%+<br /><span class=\"legend_color\" id=\"same_day_registration_4\"></span>25 &ndash; 40%<br /><span class=\"legend_color\" id=\"same_day_registration_3\"></span>15 &ndash; 25%<br /><span class=\"legend_color\" id=\"same_day_registration_2\"></span>10 &ndash; 15%<br /><span class=\"legend_color\" id=\"same_day_registration_1\"></span>5 &ndash; 10%<br /><span class=\"legend_color\" id=\"same_day_registration_0\"></span>0 &ndash; 5%<br /><span class=\"legend_color\" id=\"same_day_registration_6\"></span>Data not available<br /></div>",
+    "grids": [
+		"https://s3.amazonaws.com/data.minnpost/maps/leg_districts/0.2/Leg redistricting senate/{z}/{x}/{y}.grid.json"
+    ],
+    "tiles": [
+        "https://s3.amazonaws.com/data.minnpost/maps/leg_districts/0.2/Leg redistricting senate/{z}/{x}/{y}.png"
+    ],
+    "download": "http://www.minnpost.com",
+    "webpage": "http://www.minnpost.com"
+});

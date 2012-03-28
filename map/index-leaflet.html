@@ -106,6 +106,10 @@ form.redist-search {
   background-color: #FFFFFF;
 }
 
+.ui-tabs .ui-tabs-nav li {
+  list-style: none;
+}
+
 /**
  * Legend
  */
@@ -172,24 +176,24 @@ form.redist-search {
 /**
  * Tables
  */
-body table.datatable tr.odd,
-body table.datatable tr.odd td.sorting_1 {
+body table.dataTable tr.odd,
+body table.dataTable tr.odd td.sorting_1 {
   background-color: #FDFDFD;
 }
-body table.datatable tr.even,
-body table.datatable tr.even td.sorting_1 {
+body table.dataTable tr.even,
+body table.dataTable tr.even td.sorting_1 {
   background-color: #EDEDED;
 }
 
 table td.leaning-dfl,
-body table.datatable td.leaning-dfl,
-body table.datatable tr td.leaning-dfl.sorting_1 {
+body table.dataTable td.leaning-dfl,
+body table.dataTable tr td.leaning-dfl.sorting_1 {
   background-color: #809FBC;
   background-color: #A8BDD1;
 }
 table td.leaning-r,
-body table.datatable td.leaning-r,
-body table.datatable tr td.leaning-r.sorting_1 {
+body table.dataTable td.leaning-r,
+body table.dataTable tr td.leaning-r.sorting_1 {
   background-color: #A75859;
   background-color: #B9797A;
 }
@@ -566,14 +570,13 @@ body table.datatable tr {
  * Redistricting map 2012
  */
 
-// Global variables (because its just a little easier :)
-var map = { "house": null, "senate": null };
-var interaction;
-var geocoder = new google.maps.Geocoder();
-var marker;
-
 // Namespace jQuery
 (function($) {
+
+// Global variables (because its just a little easier :)
+redistrMap = { "house": null, "senate": null };
+geocoder = new google.maps.Geocoder();
+marker = {};
 
 /**
  * Document ready event.
@@ -582,27 +585,63 @@ $(document).ready(function() {
   // Map, house legislating district.
   wax.tilejson('http://data.minnpost.s3.amazonaws.com/maps/leg_districts/leg_redistricting.json',
     function(tilejson) {
-      map.house = new L.Map('district-map-house')
+      redistrMap.house = new L.Map('district-map-house')
         .addLayer(new wax.leaf.connector(tilejson))
         .setView(new L.LatLng(46.3, -94.2), 7);
         //.setMaxBounds(new L.LatLngBounds(new L.LatLng(-97.7124, 43.125), new L.LatLng(-89.165, 49.5466)));
         
       // Add wax interaction with UTFGrid data.
-      interaction = wax.leaf.interaction(map.house, tilejson);
-      
+      wax.leaf.interaction()
+        .map(redistrMap.house)
+        .tilejson(tilejson)
+        .on(wax.tooltip().parent(redistrMap.house._container).events());
+
       // Map, senate legislating district.
       wax.tilejson('http://data.minnpost.s3.amazonaws.com/maps/leg_districts/leg_redistricting_senate.json',
         function(tilejson) {
-          map.senate = new L.Map('district-map-senate')
+          redistrMap.senate = new L.Map('district-map-senate')
             .addLayer(new wax.leaf.connector(tilejson))
             .setView(new L.LatLng(46.3, -94.2), 7);
             //.setMaxBounds(new L.LatLngBounds(new L.LatLng(-97.7124, 43.125), new L.LatLng(-89.165, 49.5466)));
             
           // Add wax interaction with UTFGrid data.
-          interaction = wax.leaf.interaction(map.senate, tilejson);
+          var container = redistrMap.senate._container;
+          wax.leaf.interaction()
+            .map(redistrMap.senate)
+            .tilejson(tilejson)
+            .on(wax.tooltip().parent(container).events());
           
           // Tabs here to ensure all is loaded.
           $('#tabs').tabs();
+  
+          // District selecting
+          $.ajax({
+            type: 'GET',
+            dataType: 'jsonp',
+            url: 'http://data.minnpost.s3.amazonaws.com/maps/leg_districts/bbox/L2012-shp-bounding_box.jsonp?callback=boundingBox',
+            jsonp: 'callback',
+            jsonpCallback: function(data) {
+              boundingBox = function(data) {
+                data = $.parseJSON(data);
+                // Add click events
+                $('#tabs-house table tbody tr').live('click', function() {
+                  // Get districts
+                  var district = $('td.district', this).text();
+                  
+                  if (data[district] !== undefined) {
+                    district = data[district];
+                    
+                    // Zoom in
+                    var bounds = new L.LatLngBounds();
+                    for (var i in district.geom.coordinates[0]) {
+                      bounds.extend(new L.LatLng(district.geom.coordinates[0][i][1], district.geom.coordinates[0][i][0]));
+                    }
+                    redistrMap.house.fitBounds(bounds);
+                  }
+                });
+              }
+            }
+          });
         }
       );
     }
@@ -621,35 +660,6 @@ $(document).ready(function() {
   // DataTable
   $('table').dataTable({
     'aaSorting': [[ 0, 'asc' ]]
-  });
-  
-  // District selecting
-  $.ajax({
-    type: 'GET',
-    dataType: 'jsonp',
-    url: 'http://data.minnpost.s3.amazonaws.com/maps/leg_districts/bbox/L2012-shp-bounding_box.jsonp?callback=boundingBox',
-    jsonp: 'callback',
-    jsonpCallback: function(data) {
-    boundingBox = function(data) {
-      data = $.parseJSON(data);
-        // Add click events
-        $('#tabs-house table tbody tr').live('click', function() {
-          // Get districts
-          var district = $('td.district', this).text();
-          
-          if (data[district] !== undefined) {
-            district = data[district];
-            
-            // Zoom in
-            var bounds = new L.LatLngBounds();
-            for (var i in district.geom.coordinates[0]) {
-              bounds.extend(new L.LatLng(district.geom.coordinates[0][i][1], district.geom.coordinates[0][i][0]));
-            }
-            map.house.fitBounds(bounds);
-          }
-        });
-      }
-    }
   });
   
   
@@ -715,8 +725,8 @@ function geocode(query, type) {
     // Add marker and center
   	var point = new L.LatLng(lat, lng);
   	marker = new L.Marker(point);
-  	map[type].addLayer(marker);
-  	map[type].setView(point, 12);
+  	redistrMap[type].addLayer(marker);
+  	redistrMap[type].setView(point, 12);
   });
 }
 

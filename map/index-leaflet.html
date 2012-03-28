@@ -624,7 +624,7 @@ $(document).ready(function() {
   });
   
   // District selecting
-  $.getJSON('data/L2012-shp-bounding_box.json', function(data) {
+  $.getJSON('http://data.minnpost.s3.amazonaws.com/maps/leg_districts/bbox/L2012-shp-bounding_box.json', function(data) {
     // Add click events
     $('#tabs-house table tbody tr').live('click', function() {
       // Get districts

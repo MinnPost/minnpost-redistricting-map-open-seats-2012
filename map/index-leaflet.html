@@ -30,6 +30,7 @@
 form.redist-search {
 	float: right;
   margin-bottom: 3%;
+  font-size: .85em;
 }
 
 #controls-div {
@@ -81,7 +82,7 @@ form.redist-search {
  * Tabs
  */
 .tabs-tab {
-  min-height: 660px;
+  min-height: 680px;
 }
 
 .ui-tabs .ui-tabs-panel {
@@ -170,20 +171,24 @@ form.redist-search {
 }
 
 #minnpost-redist-wrapper h2 {
-  margin-bottom: 1em;
+  margin: 1em 0 .25em 0;
 }
 
 /**
  * Tables
  */
+body table tr {
+  font-size: .85em;
+}
 body table th {
-  font-size: 70%;
+  font-size: .85em;
 }
 
 body table.dataTable tbody tr.district-choice td,
 body table.dataTable tbody tr.even.district-choice td,
 body table.dataTable tbody tr.odd.district-choice td {
-  background-color: #CAC99B;
+  background-color: #63635F;
+  color: #EFEFEF;
 }
  
 body table.dataTable tr.odd,
@@ -215,7 +220,8 @@ body table.datatable tr {
 .dataTables_length,
 .dataTables_filter,
 .dataTables_info,
-.dataTables_paginate {
+.dataTables_paginate,
+.table-help {
   color: #888888;
   font-size: 70%;
 }
@@ -268,13 +274,14 @@ body table.datatable tr {
       <div id="tabs-house" class="tabs-tab">
         <div class="table-div">
           <div class="table-containter">
-            <h2>House incumbents running in hostile territory</h2>
+            <h2>House open seats and district political leaning</h2>
+            <div class="table-help">Click any row to view district on map.</div>
             <table id="incumbents-running-house">
               <thead>
                 <tr>
                   <th>District</th>
                   <th>Incumbent(s)</th>
-                  <th>Political Leaning</th>
+                  <th>District Leaning</th>
                 </tr>
               </thead>
               <tbody>
@@ -349,12 +356,13 @@ body table.datatable tr {
         
           <div class="table-containter">
             <h2>House open seats and political leaning</h2>
+            <div class="table-help">Click any row to view district on map.</div>
             <table id="open-seats-house">
               <thead>
                 <tr>
                   <th>District</th>
                   <th>Retiring Incumbent</th>
-                  <th>Political Leaning</th>
+                  <th>District Leaning</th>
                 </tr>
               </thead>
               <tbody>
@@ -522,13 +530,14 @@ body table.datatable tr {
       <div id="tabs-senate" class="tabs-tab">
         <div class="table-div">
           <div class="table-containter">
-            <h2>Senate incumbents running in hostile territory</h2>
+            <h2>Senate open seats and district political leaning</h2>
+            <div class="table-help">Click any row to view district on map.</div>
             <table id="incumbents-running">
               <thead>
                 <tr>
                   <th>District</th>
                   <th>Incumbent(s)</th>
-                  <th>Political Leaning</th>
+                  <th>District Leaning</th>
                 </tr>
               </thead>
               <tbody>
@@ -588,12 +597,13 @@ body table.datatable tr {
         
           <div class="table-containter">
             <h2>Senate open seats and political leaning</h2>
+            <div class="table-help">Click any row to view district on map.</div>
             <table id="open-seats">
               <thead>
                 <tr>
                   <th>District</th>
                   <th>Retiring Incumbent</th>
-                  <th>Political Leaning</th>
+                  <th>District Leaning</th>
                 </tr>
               </thead>
               <tbody>

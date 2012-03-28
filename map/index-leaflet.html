@@ -624,23 +624,32 @@ $(document).ready(function() {
   });
   
   // District selecting
-  $.getJSON('http://data.minnpost.s3.amazonaws.com/maps/leg_districts/bbox/L2012-shp-bounding_box.json', function(data) {
-    // Add click events
-    $('#tabs-house table tbody tr').live('click', function() {
-      // Get districts
-      var district = $('td.district', this).text();
-      
-      if (data[district] !== undefined) {
-        district = data[district];
-        
-        // Zoom in
-        var bounds = new L.LatLngBounds();
-        for (var i in district.geom.coordinates[0]) {
-          bounds.extend(new L.LatLng(district.geom.coordinates[0][i][1], district.geom.coordinates[0][i][0]));
-        }
-        map.house.fitBounds(bounds);
+  $.ajax({
+    type: 'GET',
+    dataType: 'jsonp',
+    url: 'http://data.minnpost.s3.amazonaws.com/maps/leg_districts/bbox/L2012-shp-bounding_box.jsonp?callback=boundingBox',
+    jsonp: 'callback',
+    jsonpCallback: function(data) {
+    boundingBox = function(data) {
+      data = $.parseJSON(data);
+        // Add click events
+        $('#tabs-house table tbody tr').live('click', function() {
+          // Get districts
+          var district = $('td.district', this).text();
+          
+          if (data[district] !== undefined) {
+            district = data[district];
+            
+            // Zoom in
+            var bounds = new L.LatLngBounds();
+            for (var i in district.geom.coordinates[0]) {
+              bounds.extend(new L.LatLng(district.geom.coordinates[0][i][1], district.geom.coordinates[0][i][0]));
+            }
+            map.house.fitBounds(bounds);
+          }
+        });
       }
-    });
+    }
   });
   
   

@@ -522,34 +522,84 @@ body table.datatable tr {
               </thead>
               <tbody>
                 <tr>
-                  <td class="district">01</td>
-                  <td>Dan Fabian (S)<span class="inc-r"></span></td>
-                  <td class="leaning-dfl">30%</td>
-                </tr>
-                <tr>
                   <td class="district">04</td>
-                  <td>Debra Kiel<span class="inc-dfl"></span></td>
-                  <td class="leaning-dfl">60%</td>
+                  <td>Keith Langseth<span class="inc-dfl"></span></td>
+                  <td class="leaning-dfl">D+16</td>
                 </tr>
                 <tr>
-                  <td class="district">02</td>
-                  <td>David Hancock<span class="inc-dfl"></span></td>
-                  <td class="leaning-r">R</td>
+                  <td class="district">09</td>
+                  <td>(open)</td>
+                  <td class="leaning-r">R+19</td>
                 </tr>
                 <tr>
-                  <td class="district">03</td>
-                  <td>(none)</td>
-                  <td class="leaning-r">R</td>
+                  <td class="district">12</td>
+                  <td>(open)</td>
+                  <td class="leaning-r">R+14</td>
                 </tr>
                 <tr>
-                  <td class="district">02B</td>
-                  <td>David Hancock<span class="inc-dfl"></span>, <br>David Hancock<span class="inc-r"></span></td>
-                  <td class="leaning-r">R</td>
+                  <td class="district">20</td>
+                  <td>(open)</td>
+                  <td class="leaning-r">R+06</td>
                 </tr>
                 <tr>
-                  <td class="district">02B</td>
-                  <td>David Hancock</td>
-                  <td class="leaning-r">R</td>
+                  <td class="district">22</td>
+                  <td>Doug Magnus<span class="inc-r"></span></td>
+                  <td class="leaning-r">R+17</td>
+                </tr>
+                <tr>
+                  <td class="district">24</td>
+                  <td>Mike Parry<span class="inc-r"></span></td>
+                  <td class="leaning-r">R+05</td>
+                </tr>
+                <tr>
+                  <td class="district">29</td>
+                  <td>Amy Koch<span class="inc-r"></span></td>
+                  <td class="leaning-r">R+44</td>
+                </tr>
+                <tr>
+                  <td class="district">30</td>
+                  <td>(open)</td>
+                  <td class="leaning-r">R+29</td>
+                </tr>
+                <tr>
+                  <td class="district">33</td>
+                  <td>Gen Olson<span class="inc-r"></span></td>
+                  <td class="leaning-r">R+52</td>
+                </tr>
+                <tr>
+                  <td class="district">35</td>
+                  <td>(open)</td>
+                  <td class="leaning-r">R+18</td>
+                </tr>
+                <tr>
+                  <td class="district">42</td>
+                  <td>(open)</td>
+                  <td class="leaning-r">R+13</td>
+                </tr>
+                <tr>
+                  <td class="district">49</td>
+                  <td>Geoff Michel<span class="inc-r"></span></td>
+                  <td class="leaning-dfl">D+09</td>
+                </tr>
+                <tr>
+                  <td class="district">50</td>
+                  <td>(open)</td>
+                  <td class="leaning-dfl">D+19</td>
+                </tr>
+                <tr>
+                  <td class="district">53</td>
+                  <td>(open)</td>
+                  <td class="leaning-dfl">D+10</td>
+                </tr>
+                <tr>
+                  <td class="district">57</td>
+                  <td>Chris Gerlach<span class="inc-r"></span></td>
+                  <td class="leaning-r">R+08</td>
+                </tr>
+                <tr>
+                  <td class="district">59</td>
+                  <td>Linda I. Higgins<span class="inc-dfl"></span></td>
+                  <td class="leaning-dfl">D+55</td>
                 </tr>
               </tbody>
             </table>
@@ -721,38 +771,39 @@ $(document).ready(function() {
   
   
   // Table making (remove for production)
-  /*
-  $.getJSON('data/open_seats_house.json', function(data) {
+  $.getJSON('data/open_seats_senate.json', function(data) {
     var table = $('<table></table>');
+    console.log(data);
     for (var i in data) {
-      var row = '';
-      row += '\n\n                <tr>';
-      row += '\n                  <td class="district">' + data[i]['District'] + '</td>';
-      if (data[i]["Retire?"] == "1") {
-        row += '\n                  <td>' + data[i]["Retiree"];
-        if (data[i]["Retiree party"] == 'DFL') {
-          row += '<span class="inc-dfl"></span>';
+      if (typeof data[i]["District"] != undefined) {
+        var row = '';
+        row += '\n\n                <tr>';
+        row += '\n                  <td class="district">' + data[i]['District'] + '</td>';
+        if (data[i]["Retire?"] == "1") {
+          row += '\n                  <td>' + data[i]["Retiree"];
+          if (data[i]["Retiree party"] == 'DFL') {
+            row += '<span class="inc-dfl"></span>';
+          }
+          else {
+            row += '<span class="inc-r"></span>';
+          }
+          row += '</td>'
         }
         else {
-          row += '<span class="inc-r"></span>';
+          row += '\n                  <td>(open)</td>';
         }
-        row += '</td>'
+        row += '\n                  <td class="leaning-';
+        row += (data[i]["RPVI"].indexOf('R') >= 0) ? 'r' : '';
+        row += (data[i]["RPVI"].indexOf('D') >= 0) ? 'dfl' : '';
+        row += (data[i]["RPVI"].indexOf('EVE') >= 0) ? 'even' : '';
+        row += '">' + data[i]["RPVI"] + '</td>\n';
+        row += '\n                </tr>';
+        
+        table.append($(row));
       }
-      else {
-        row += '\n                  <td>(open)</td>';
-      }
-      row += '\n                  <td class="leaning-';
-      row += (data[i]["RPVI"].indexOf('R') >= 0) ? 'r' : '';
-      row += (data[i]["RPVI"].indexOf('D') >= 0) ? 'dfl' : '';
-      row += (data[i]["RPVI"].indexOf('EVE') >= 0) ? 'even' : '';
-      row += '">' + data[i]["RPVI"] + '</td>\n';
-      row += '\n                </tr>';
-      
-      table.append($(row));
     }
     $('body').append(table);
   });
-  */
 });
 
 /**

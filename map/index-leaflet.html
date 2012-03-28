@@ -176,6 +176,10 @@ form.redist-search {
 /**
  * Tables
  */
+body table th {
+  font-size: 70%;
+} 
+ 
 body table.dataTable tr.odd,
 body table.dataTable tr.odd td.sorting_1 {
   background-color: #FDFDFD;
@@ -206,8 +210,12 @@ body table.datatable tr {
 .dataTables_filter,
 .dataTables_info,
 .dataTables_paginate {
-  color: #666666;
-  font-size: 80%;
+  color: #888888;
+  font-size: 70%;
+}
+.dataTable a.paginate_enabled_next,
+.dataTable a.paginate_enabled_previous {
+  color: #888888;
 }
 
 .inc-dfl,
@@ -659,7 +667,9 @@ $(document).ready(function() {
   
   // DataTable
   $('table').dataTable({
-    'aaSorting': [[ 0, 'asc' ]]
+    'aaSorting': [[ 0, 'asc' ]],
+    'aLengthMenu': [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+    'iDisplayLength': 5
   });
   
   

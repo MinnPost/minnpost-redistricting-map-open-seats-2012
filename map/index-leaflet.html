@@ -734,6 +734,7 @@ body table.datatable tr {
 
 // Global variables (because its just a little easier :)
 redistrMap = { "house": null, "senate": null };
+redistrInteraction = { "house": null, "senate": null };
 geocoder = new google.maps.Geocoder();
 marker = {};
 
@@ -750,7 +751,7 @@ $(document).ready(function() {
         //.setMaxBounds(new L.LatLngBounds(new L.LatLng(-97.7124, 43.125), new L.LatLng(-89.165, 49.5466)));
         
       // Add wax interaction with UTFGrid data.
-      wax.leaf.interaction()
+      redistrInteraction.house = wax.leaf.interaction()
         .map(redistrMap.house)
         .tilejson(tilejson)
         .on(wax.tooltip().parent(redistrMap.house._container).events());
@@ -764,11 +765,10 @@ $(document).ready(function() {
             //.setMaxBounds(new L.LatLngBounds(new L.LatLng(-97.7124, 43.125), new L.LatLng(-89.165, 49.5466)));
             
           // Add wax interaction with UTFGrid data.
-          var container = redistrMap.senate._container;
-          wax.leaf.interaction()
+          redistrInteraction.senate = wax.leaf.interaction()
             .map(redistrMap.senate)
             .tilejson(tilejson)
-            .on(wax.tooltip().parent(container).events());
+            .on(wax.tooltip().parent(redistrMap.senate._container).events());
           
           // Tabs here to ensure all is loaded.
           $('#tabs').tabs();
@@ -863,92 +863,6 @@ $(document).ready(function() {
     'aLengthMenu': [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
     'iDisplayLength': 5
   });
-  
-  
-  // Table making (remove for production)
-  /*
-  $.getJSON('data/open_seats_senate.json', function(data) {
-    var table = $('<table></table>');
-    console.log(data);
-    for (var i in data) {
-      if (typeof data[i]["District"] != undefined) {
-        var row = '';
-        row += '\n\n                <tr>';
-        row += '\n                  <td class="district">' + data[i]['District'] + '</td>';
-        if (data[i]["Retire?"] == "1") {
-          row += '\n                  <td>' + data[i]["Retiree"];
-          if (data[i]["Retiree party"] == 'DFL') {
-            row += '<span class="inc-dfl"></span>';
-          }
-          else {
-            row += '<span class="inc-r"></span>';
-          }
-          row += '</td>'
-        }
-        else {
-          row += '\n                  <td>(open)</td>';
-        }
-        row += '\n                  <td class="leaning-';
-        row += (data[i]["RPVI"].indexOf('R') >= 0) ? 'r' : '';
-        row += (data[i]["RPVI"].indexOf('D') >= 0) ? 'dfl' : '';
-        row += (data[i]["RPVI"].indexOf('EVE') >= 0) ? 'even' : '';
-        row += '">' + data[i]["RPVI"] + '</td>\n';
-        row += '\n                </tr>';
-        
-        table.append($(row));
-      }
-    }
-    $('body').append(table);
-  });
-  */
-  /*
-  $.getJSON('data/hostile_districts_senate.json', function(data) {
-    var table = $('<table></table>');
-    for (var i in data) {
-    console.log(data[i]);
-      if (typeof data[i]["District"] != undefined) {
-        var row = '';
-        row += '\n\n                <tr>';
-        row += '\n                  <td class="district">' + data[i]['District'] + '</td>';
-        
-        row += '\n                  <td>';
-        if (data[i]["incumb1"] != "") {
-          row += data[i]["incumb1"];
-          if (data[i]["i1party"] == 'DFL') {
-            row += '<span class="inc-dfl"></span>';
-          }
-          else {
-            row += '<span class="inc-r"></span>';
-          }
-          
-          if (data[i]["incumb2"] != "") {
-            row += data[i]["incumb2"];
-            if (data[i]["i2party"] == 'DFL') {
-              row += '<span class="inc-dfl"></span>';
-            }
-            else {
-              row += '<span class="inc-r"></span>';
-            }
-          }
-        }
-        else {
-          row += '(open)';
-        }
-        row += '</td>'
-        
-        row += '\n                  <td class="leaning-';
-        row += (data[i]["rpvi"].indexOf('R') >= 0) ? 'r' : '';
-        row += (data[i]["rpvi"].indexOf('D') >= 0) ? 'dfl' : '';
-        row += (data[i]["rpvi"].indexOf('EVE') >= 0) ? 'even' : '';
-        row += '">' + data[i]["rpvi"] + '</td>\n';
-        row += '\n                </tr>';
-        
-        table.append($(row));
-      }
-    }
-    $('body').append(table);
-  });
-  */
 });
 
 /**

@@ -35,7 +35,7 @@ Map {
   line-color:#b2c8d1; 
 }
 
-#l2012 {
+#l2012[zoom >= 7] {
   polygon-opacity:1;
   polygon-fill:#ae8;
   line-color:#464646;
@@ -46,10 +46,28 @@ Map {
   text-fill: #ccc;
   text-min-path-length: 80;
   text-vertical-alignment: bottom;
-  text-avoid-edges: true;
+  //text-avoid-edges: true;
   text-placement-type: simple;
   text-allow-overlap: true;
-} 
+}
+
+// House district-level fixes
+#l2012[DISTRICT = "24B"][zoom = 9] { text-dx: 30; }
+#l2012[DISTRICT = "24B"][zoom = 8] { text-dx: 10; }
+#l2012[DISTRICT = "24B"][zoom = 10] { text-dx: 60; }
+#l2012[DISTRICT = "24B"][zoom = 11] { text-dx: 160; }
+#l2012[DISTRICT = "24B"][zoom = 12] { text-dx: 300; }
+#l2012[DISTRICT = "21B"][zoom = 9] { text-dy: -30; }
+#l2012[DISTRICT = "21B"][zoom = 8] { text-dy: -15; }
+#l2012[DISTRICT = "21B"][zoom = 7] { text-dy: -10; }
+#l2012[DISTRICT = "66B"][zoom = 11] { text-dy: -15; }
+#l2012[DISTRICT = "66B"][zoom = 12] { text-dy: -30; }
+#l2012[DISTRICT = "03A"][zoom = 7] { text-dy: -15; }
+
+// Senate district-level fixes
+#l2012[DISTRICT = "62"][zoom = 11] { text-min-path-length: 0; }
+#l2012[DISTRICT = "03"][zoom = 7] { text-dy: -15; }
+
 #l2012[MEANSPVI >= -100] { polygon-fill:@dem5; } 
 #l2012[MEANSPVI >= -40] { polygon-fill:@dem4; } 
 #l2012[MEANSPVI >= -20] { polygon-fill:@dem3; } 

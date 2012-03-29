@@ -33,49 +33,20 @@ form.redist-search {
   font-size: .85em;
 }
 
-#controls-div {
-	font-size: 1.4em;
-}
-
-#legend {
-	float: left;
-	margin-bottom: 10px;
-}
-
 .wax-tooltip {
 	position:absolute;
-	right:10px;
-	top:10px;
-	padding:10px;
-	background-color:#ddd;
-	opacity:0.8;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	width: 80px;
+	right: 10px;
+	top: 10px;
+	padding: 10px;
+	background-color: #FFFFFF;
+	opacity: 0.8;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	min-width: 120px;
+	z-index: 9999999;
 }
-
-#tooltip_mcdname {
-	font-weight: bold;
-	font-size: 1.3em;
-	margin-bottom: 10px;
-}
-
-.tooltip_title {
-	font-size: 1.2em;
-	margin-bottom: 5px;
-	margin-top: 5px;
-}
-
-#tooltip_edrpercent {
-	font-size: 1.1em;
-}
-
-#tooltip_percent-r {
-	font-size: 1.0em;
-}
-
-#tooltip_percent-d {
-	font-size: 1.0em;
+#tooltip_distname {
+  font-weight: bold;
 }
 
 /**
@@ -123,35 +94,50 @@ li.ui-corner-top {
  * Legend
  */
 .legend {
-  font-family: sans-serif;
-  font-size: 0.8em;
-  line-height: 20px;
+  color: #222222;
+  font-size: 70%;
+  border: 1px solid #AAA;
+  margin-bottom: 1em;
+  text-align: center;
 }
-
-.legend span {
+.legend span.legend_color {
   height: 20px;
   width: 20px;
-  margin-right: 5px;
-  display: block;
-  float: left;
-  clear: left;
+  margin-right: .5em;
+  display: inline-block;
+  margin-bottom: -5px;
+}
+.legend span.legend_item {
+  margin-right: .5em;
+  font-size: 130%;
+  font-weight: bold;
+}
+.legend ul {
+  list-style: none;
+}
+.legend ul li {
+  display: inline;
+  margin-right: 1em;
+  line-height: 20px;
+  vertical-align: middle;
 }
 
-.legend #leg_redistricting_0 { background-color: #B30000; }
-.legend #leg_redistricting_1 { background-color: #E34A33; }
-.legend #leg_redistricting_2 { background-color: #FC8D59; }
-.legend #leg_redistricting_3 { background-color: #FDBB84; }
-.legend #leg_redistricting_4 { background-color: #FDD49E; }
-.legend #leg_redistricting_5 { background-color: #FFFFFF; }
-.legend #leg_redistricting_6 { background-color: #D0D1E6; }
-.legend #leg_redistricting_7 { background-color: #A6BDDB; }
-.legend #leg_redistricting_8 { background-color: #74A9CF; }
-.legend #leg_redistricting_9 { background-color: #2B8CBE; }
-.legend #leg_redistricting_10 { background-color: #045A8D; }
+/* R */
+.legend #leg_redistricting_r5 { background-color: #330304; }
+.legend #leg_redistricting_r4 { background-color: #3B0304; }
+.legend #leg_redistricting_r3 { background-color: #4C0406; }
+.legend #leg_redistricting_r2 { background-color: #641a1b; }
+.legend #leg_redistricting_r1 { background-color: #7a2f30; }
 
-.clear {
-	clear: both;
-}
+/* E */
+.legend #leg_redistricting_e { background-color: #343030; }
+
+/* D */
+.legend #leg_redistricting_d1 { background-color: #4B5B67; }
+.legend #leg_redistricting_d2 { background-color: #243746; }
+.legend #leg_redistricting_d3 { background-color: #20313F; }
+.legend #leg_redistricting_d4 { background-color: #1C2C38; }
+.legend #leg_redistricting_d5 { background-color: #192631; }
 
 /**
  * Layout
@@ -251,25 +237,6 @@ body table.datatable tr {
   </style>
   
   <div id="minnpost-redist-wrapper" class="content node-field-body">
-  	<div id="controls-div">
-      
-      <!--
-    	<div class="legend" id="legend">
-    		<span class="legend_color" id="leg_redistricting_0"></span>R 40 &ndash; 100<br />
-    		<span class="legend_color" id="leg_redistricting_1"></span>R 30 &ndash; 40<br />
-    		<span class="legend_color" id="leg_redistricting_2"></span>R 20 &ndash; 30<br />
-    		<span class="legend_color" id="leg_redistricting_3"></span>R 10 &ndash; 20<br />
-    		<span class="legend_color" id="leg_redistricting_4"></span>R 2 &ndash; 10<br />
-    		<span class="legend_color" id="leg_redistricting_5"></span>Even<br />
-    		<span class="legend_color" id="leg_redistricting_6"></span>D 2 &ndash; 10<br />
-    		<span class="legend_color" id="leg_redistricting_7"></span>D 10 &ndash; 20<br />
-    		<span class="legend_color" id="leg_redistricting_8"></span>D 20 &ndash; 30<br />
-    		<span class="legend_color" id="leg_redistricting_9"></span>D 30 &ndash; 40<br />
-    		<span class="legend_color" id="leg_redistricting_10"></span>D 40 &ndash; 100<br />
-    	</div>
-    	-->
-    </div>
-    
     <div id="tabs">
     <ul>
     	<li><a href="#tabs-house">House</a></li>
@@ -707,6 +674,28 @@ body table.datatable tr {
           <div id="district-map-senate"></div>
         </div>
       </div>
+    </div>
+    
+  	<div id="controls-div">
+    	<div class="legend" id="legend-map">
+    		<ul>
+    		  <li><span class="legend_color" id="leg_redistricting_r5"></span>R +40 &ndash; 100</li>
+    		  <li><span class="legend_color" id="leg_redistricting_r4"></span>R +20 &ndash; 40</li>
+    		  <li><span class="legend_color" id="leg_redistricting_r3"></span>R +10 &ndash; 20</li>
+    		  <li><span class="legend_color" id="leg_redistricting_r2"></span>R +5 &ndash; 10</li>
+    		  <li><span class="legend_color" id="leg_redistricting_r1"></span>R +0.5 &ndash; 5</li>
+    		  <li><span class="legend_color" id="leg_redistricting_e"></span>Even</li>
+    		  <li><span class="legend_color" id="leg_redistricting_d1"></span>D 2 &ndash; 10</li>
+    		  <li><span class="legend_color" id="leg_redistricting_d2"></span>D 10 &ndash; 20</li>
+    		  <li><span class="legend_color" id="leg_redistricting_d3"></span>D 20 &ndash; 30</li>
+    		  <li><span class="legend_color" id="leg_redistricting_d4"></span>D 30 &ndash; 40</li>
+    		  <li><span class="legend_color" id="leg_redistricting_d5"></span>D 40 &ndash; 100</li>
+    	</div>
+    	<div class="legend" id="legend-tables">
+    		<ul>
+    		  <li><span class="legend_item">%</span>represents percentage points</li>
+    		</ul>
+    	</div>
     </div>
   </div>
 

@@ -728,7 +728,7 @@ marker = {};
  */
 $(document).ready(function() {
   // Map, house legislating district.
-  wax.tilejson('http://data.minnpost.s3.amazonaws.com/maps/leg_districts/leg_redistricting.json',
+  wax.tilejson('https://s3.amazonaws.com/data.minnpost/maps/leg_districts/redistricting_pvi_house.json',
     function(tilejson) {
       redistrMap.house = new L.Map('district-map-house')
         .addLayer(new wax.leaf.connector(tilejson))
@@ -742,7 +742,7 @@ $(document).ready(function() {
         .on(wax.tooltip().parent(redistrMap.house._container).events());
 
       // Map, senate legislating district.
-      wax.tilejson('http://data.minnpost.s3.amazonaws.com/maps/leg_districts/leg_redistricting_senate.json',
+      wax.tilejson('https://s3.amazonaws.com/data.minnpost/maps/leg_districts/redistricting_pvi_senate.json',
         function(tilejson) {
           redistrMap.senate = new L.Map('district-map-senate')
             .addLayer(new wax.leaf.connector(tilejson))

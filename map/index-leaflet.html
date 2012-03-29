@@ -168,6 +168,10 @@ li.ui-corner-top {
   margin: 1em 0 .25em 0;
 }
 
+#controls-div {
+  clear: both;
+}
+
 /**
  * Tables
  */
@@ -234,6 +238,22 @@ body table.datatable tr {
 .inc-r {
   background-color: #964F50;
 }
+
+/**
+ * Mobile-specific rules
+ */
+@media only screen and (max-width:480px) {
+
+.map-div {
+  display: none;
+}
+
+.table-div {
+  width: 100%;
+  margin: 0;
+}
+
+} // end media query
   </style>
   
   <div id="minnpost-redist-wrapper" class="content node-field-body">

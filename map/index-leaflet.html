@@ -218,9 +218,22 @@ body table.datatable tr {
   color: #888888;
   font-size: 70%;
 }
+.dataTables_length,
+.dataTables_filter {
+  margin-bottom: .6em;
+}
+.dataTables_info,
+.dataTables_paginate {
+  margin-top: .6em;
+}
 .dataTable a.paginate_enabled_next,
 .dataTable a.paginate_enabled_previous {
   color: #888888;
+}
+.table-help {
+  float: right;
+  width: 40%;
+  margin-top: 5px;
 }
 
 .inc-dfl,
@@ -264,8 +277,7 @@ body table.datatable tr {
       <div id="tabs-house" class="tabs-tab">
         <div class="table-div">
           <div class="table-containter">
-            <h2>Incumbents running in hostile territory</h2>
-            <div class="table-help">Click any row to view district on map.</div>
+            <h2>Incumbents running against the odds</h2>
             <table id="incumbents-running-house">
               <thead>
                 <tr>
@@ -346,7 +358,6 @@ body table.datatable tr {
         
           <div class="table-containter">
             <h2>Open seats and district political leaning</h2>
-            <div class="table-help">Click any row to view district on map.</div>
             <table id="open-seats-house">
               <thead>
                 <tr>
@@ -537,8 +548,7 @@ body table.datatable tr {
       <div id="tabs-senate" class="tabs-tab">
         <div class="table-div">
           <div class="table-containter">
-            <h2>Incumbents running in hostile territory</h2>
-            <div class="table-help">Click any row to view district on map.</div>
+            <h2>Incumbents running against the odds</h2>
             <table id="incumbents-running">
               <thead>
                 <tr>
@@ -604,7 +614,6 @@ body table.datatable tr {
         
           <div class="table-containter">
             <h2>Open seats and district political leaning</h2>
-            <div class="table-help">Click any row to view district on map.</div>
             <table id="open-seats">
               <thead>
                 <tr>
@@ -879,6 +888,10 @@ $(document).ready(function() {
     'iDisplayLength': 5,
     'bFilter': false
   });
+  
+  // Add help text here
+  var $help = $('<div class="table-help">Click any row to view district on map.</div>');
+  $('.dataTables_wrapper').prepend($help);
 });
 
 /**

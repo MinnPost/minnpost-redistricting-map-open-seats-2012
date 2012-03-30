@@ -1,0 +1,31 @@
+grid({
+    "center": [
+        0,
+        0,
+        4
+    ],
+    "id": "redistricting_pvi_house",
+    "scheme": "tms",
+    "bounds": [
+        -99.3604,
+        41.6401,
+        -87.8906,
+        50.3455
+    ],
+    "minzoom": 6,
+    "maxzoom": 12,
+    "legend": "",
+    "name": "Redistricting PVI - House",
+    "description": "",
+    "version": "1.0.0",
+    "template": "{{#__location__}}{{/__location__}}{{#__teaser__}}<div id='tooltip_distname'>District {{{DISTRICT}}}</div><div id='tooltip_pvi'>Political leaning: {{{RSPVI}}}</div>{{/__teaser__}}{{#__full__}}{{/__full__}}",
+    "legend": "",
+    "grids": [
+	"https://s3.amazonaws.com/data.minnpost/maps/leg_districts/0.2/Redistricting PVI - House/{z}/{x}/{y}.grid.json"
+    ],
+    "tiles": [
+	"https://s3.amazonaws.com/data.minnpost/maps/leg_districts/0.2/Redistricting PVI - House/{z}/{x}/{y}.png"
+    ],
+    "download": "http://www.minnpost.com",
+    "webpage": "http://www.minnpost.com"
+});

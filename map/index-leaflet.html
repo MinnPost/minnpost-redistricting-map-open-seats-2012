@@ -789,6 +789,13 @@ marker = {};
  * Document ready event.
  */
 $(document).ready(function() {
+  // Are we using a small screen?
+  if (document.documentElement.clientWidth <= 480) {
+    // If so, we only need to load the table javascript
+	ensureTabsLoaded();
+	initTable();
+  } else {
+
   // Map, house legislating district.
   wax.tilejson('https://s3.amazonaws.com/data.minnpost/maps/leg_districts/redistricting_pvi_house.json',
     function(tilejson) {
@@ -817,23 +824,22 @@ $(document).ready(function() {
             .tilejson(tilejson)
             .on(wax.tooltip().parent(redistrMap.senate._container).events());
           
-          // Tabs here to ensure all is loaded.
-          $('#tabs').tabs();
-  
-          // House District selecting
+          ensureTabsLoaded();
+
+          // house district selecting
           $.ajax({
-            type: 'GET',
-            dataType: 'jsonp',
-            url: 'http://data.minnpost.s3.amazonaws.com/maps/leg_districts/bbox/L2012-shp-bounding_box.jsonp?callback=boundingBox',
+            type: 'get',
+            datatype: 'jsonp',
+            url: 'http://data.minnpost.s3.amazonaws.com/maps/leg_districts/bbox/l2012-shp-bounding_box.jsonp?callback=boundingbox',
             jsonp: 'callback',
-            jsonpCallback: function(data) {
-              boundingBox = function(data) {
+            jsonpcallback: function(data) {
+              boundingbox = function(data) {
                 if (typeof data == 'string') {
-                  data = $.parseJSON(data);
+                  data = $.parsejson(data);
                 }
-                // Add click events
+                // add click events
                 $('#tabs-house table tbody tr').live('click', function() {
-                  // Get districts
+                  // get districts
                   var district = $('td.district', this).text();
                   
                   if (data[district] !== undefined) {
@@ -904,6 +910,26 @@ $(document).ready(function() {
     return false;
   });
   
+  initTable();
+    
+  // Add help text here
+  var $help = $('<div class="table-help">Click any row to view district on map.</div>');
+  $('.dataTables_wrapper').prepend($help);
+  } // end mobile if
+});
+
+
+/**
+ * Ensure the tabs are loaded.
+ */
+function ensureTabsLoaded() {
+  $('#tabs').tabs();
+}
+
+/**
+ * Set up table sorting.
+ */
+function initTable() {
   // DataTable
   $('table').dataTable({
     'aaSorting': [[ 0, 'asc' ]],
@@ -911,11 +937,7 @@ $(document).ready(function() {
     'iDisplayLength': 5,
     'bFilter': false
   });
-  
-  // Add help text here
-  var $help = $('<div class="table-help">Click any row to view district on map.</div>');
-  $('.dataTables_wrapper').prepend($help);
-});
+}
 
 /**
  * Geocode address from form.

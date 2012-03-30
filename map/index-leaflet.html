@@ -875,8 +875,9 @@ $(document).ready(function() {
   // DataTable
   $('table').dataTable({
     'aaSorting': [[ 0, 'asc' ]],
-    'aLengthMenu': [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
-    'iDisplayLength': 5
+    'aLengthMenu': [[5, 10, 25, 50, -1], [5, 10, 25, 50, 'All']],
+    'iDisplayLength': 5,
+    'bFilter': false
   });
 });
 

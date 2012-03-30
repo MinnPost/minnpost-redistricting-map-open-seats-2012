@@ -53,7 +53,7 @@ form.redist-search {
  * Tabs
  */
 .tabs-tab {
-  min-height: 680px;
+  min-height: 750px;
 }
 
 .ui-tabs .ui-tabs-panel {
@@ -96,9 +96,7 @@ li.ui-corner-top {
 .legend {
   color: #222222;
   font-size: 70%;
-  border: 1px solid #AAA;
   margin-bottom: 1em;
-  text-align: center;
 }
 .legend span.legend_color {
   height: 20px;
@@ -114,10 +112,10 @@ li.ui-corner-top {
 }
 .legend ul {
   list-style: none;
+  float: left;
+  width: 40%;
 }
 .legend ul li {
-  display: inline;
-  margin-right: 1em;
   line-height: 20px;
   vertical-align: middle;
 }
@@ -496,6 +494,23 @@ body table.datatable tr {
           </form>
           
           <div id="district-map-house"></div>
+          
+        	<div class="legend" id="legend-map">
+        		<ul>
+        		  <li><span class="legend_color" id="leg_redistricting_e"></span>Even</li>
+        		  <li><span class="legend_color" id="leg_redistricting_r1"></span>R +0.5 &ndash; 5</li>
+        		  <li><span class="legend_color" id="leg_redistricting_r2"></span>R +5 &ndash; 10</li>
+        		  <li><span class="legend_color" id="leg_redistricting_r3"></span>R +10 &ndash; 20</li>
+        		  <li><span class="legend_color" id="leg_redistricting_r4"></span>R +20 &ndash; 40</li>
+        		  <li><span class="legend_color" id="leg_redistricting_r5"></span>R +40 &ndash; 100</li>
+        		</ul>
+        		<ul>
+        		  <li><span class="legend_color" id="leg_redistricting_d1"></span>D +0.5 &ndash; 5</li>
+        		  <li><span class="legend_color" id="leg_redistricting_d2"></span>D +5 &ndash; 10</li>
+        		  <li><span class="legend_color" id="leg_redistricting_d3"></span>D +10 &ndash; 20</li>
+        		  <li><span class="legend_color" id="leg_redistricting_d4"></span>D +20 &ndash; 40</li>
+        		  <li><span class="legend_color" id="leg_redistricting_d5"></span>D +40 &ndash; 100</li>
+        	</div>
         </div>
       </div>
       
@@ -672,30 +687,25 @@ body table.datatable tr {
           </form>
           
           <div id="district-map-senate"></div>
+          
+        	<div class="legend" id="legend-map">
+        		<ul>
+        		  <li><span class="legend_color" id="leg_redistricting_e"></span>Even</li>
+        		  <li><span class="legend_color" id="leg_redistricting_r1"></span>R +0.5 &ndash; 5</li>
+        		  <li><span class="legend_color" id="leg_redistricting_r2"></span>R +5 &ndash; 10</li>
+        		  <li><span class="legend_color" id="leg_redistricting_r3"></span>R +10 &ndash; 20</li>
+        		  <li><span class="legend_color" id="leg_redistricting_r4"></span>R +20 &ndash; 40</li>
+        		  <li><span class="legend_color" id="leg_redistricting_r5"></span>R +40 &ndash; 100</li>
+        		</ul>
+        		<ul>
+        		  <li><span class="legend_color" id="leg_redistricting_d1"></span>D +0.5 &ndash; 5</li>
+        		  <li><span class="legend_color" id="leg_redistricting_d2"></span>D +5 &ndash; 10</li>
+        		  <li><span class="legend_color" id="leg_redistricting_d3"></span>D +10 &ndash; 20</li>
+        		  <li><span class="legend_color" id="leg_redistricting_d4"></span>D +20 &ndash; 40</li>
+        		  <li><span class="legend_color" id="leg_redistricting_d5"></span>D +40 &ndash; 100</li>
+        	</div>
         </div>
       </div>
-    </div>
-    
-  	<div id="controls-div">
-    	<div class="legend" id="legend-map">
-    		<ul>
-    		  <li><span class="legend_color" id="leg_redistricting_r5"></span>R +40 &ndash; 100</li>
-    		  <li><span class="legend_color" id="leg_redistricting_r4"></span>R +20 &ndash; 40</li>
-    		  <li><span class="legend_color" id="leg_redistricting_r3"></span>R +10 &ndash; 20</li>
-    		  <li><span class="legend_color" id="leg_redistricting_r2"></span>R +5 &ndash; 10</li>
-    		  <li><span class="legend_color" id="leg_redistricting_r1"></span>R +0.5 &ndash; 5</li>
-    		  <li><span class="legend_color" id="leg_redistricting_e"></span>Even</li>
-    		  <li><span class="legend_color" id="leg_redistricting_d1"></span>D 2 &ndash; 10</li>
-    		  <li><span class="legend_color" id="leg_redistricting_d2"></span>D 10 &ndash; 20</li>
-    		  <li><span class="legend_color" id="leg_redistricting_d3"></span>D 20 &ndash; 30</li>
-    		  <li><span class="legend_color" id="leg_redistricting_d4"></span>D 30 &ndash; 40</li>
-    		  <li><span class="legend_color" id="leg_redistricting_d5"></span>D 40 &ndash; 100</li>
-    	</div>
-    	<div class="legend" id="legend-tables">
-    		<ul>
-    		  <li><span class="legend_item">%</span>represents percentage points</li>
-    		</ul>
-    	</div>
     </div>
   </div>
 

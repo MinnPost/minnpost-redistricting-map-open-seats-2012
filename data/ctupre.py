@@ -12,7 +12,7 @@ def concatFields(inFile, outFile, field1, field2, combineTitle, inFileArgs='rU',
 
     for line in r:
         try:
-            concatenated = str(int(line[field1])) + ':' + str(int(line[field2]))
+            concatenated = str(int(float(line[field1]))) + ':' + str(int(float(line[field2])))
         except ValueError:
             break
 

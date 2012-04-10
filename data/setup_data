@@ -1,8 +1,7 @@
 mkdir -p originals
 cp *.xls originals
+in2csv 2006_general_results.xls > 2006_results.csv
 in2csv 2008_general_results.xls > 2008_results.csv
 in2csv 2010_General_Results_Final.xls > 2010_results.csv
 python prep.py
-rm 2008_results.csv
 python calculate.py
-

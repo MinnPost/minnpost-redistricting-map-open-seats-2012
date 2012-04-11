@@ -1,0 +1,11 @@
+
+createdb -h localhost -T template_postgis minnpost_redistricting_2012
+
+shp2pgsql -s 4326 -d shapefiles/precincts_pvi_mnleg_060810/vtd_20101029.shp precincts | psql -d minnpost_redistricting_2012
+
+shp2pgsql -s 4326 -d shapefiles/2010_districts/reprojected/tl_2010_27_sldl10.shp districts_2002 | psql -d minnpost_redistricting_2012
+shp2pgsql -s 4326 -d shapefiles/2012_leg/L2012.shp districts_2012 | psql -d minnpost_redistricting_2012
+
+SELECT districts_2002.sldlst10, precincts.leg FROM districts_2002 INNER JOIN precincts ON ST_Intersects(districts_2002.the_geom, ST_Centroid(precincts.the_geom));
+
+pgsql2shp -f precincts_new_districts.shp minnpost_redistricting_2012 "SELECT districts_2002.the_geom, districts_2002.sldlst10, precincts.ltr06, ltd06, lot06 FROM districts_2002 INNER JOIN precincts ON ST_Intersects(districts_2002.the_geom, ST_Centroid(precincts.the_geom));"

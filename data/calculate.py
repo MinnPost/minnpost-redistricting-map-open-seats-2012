@@ -14,10 +14,12 @@ r2006 = csv.reader(file2006)
 
 for row in r2006:
     ctupre = row[61]
+    district = row[3]
     mnleg_pvi_r_total_06 = calculate_total(row, 56)
     mnleg_pvi_d_total_06 = calculate_total(row, 57)
     mnleg_pvi_total_06 = calculate_total(row, 60)
 
+    pvi = add_to_pvi(pvi, ctupre, 'district', district)
     pvi = add_to_pvi(pvi, ctupre, 'mnleg_06_tr', mnleg_pvi_r_total_06)
     pvi = add_to_pvi(pvi, ctupre, 'mnleg_06_td', mnleg_pvi_d_total_06)
     pvi = add_to_pvi(pvi, ctupre, 'mnleg_06_ot', mnleg_pvi_total_06)
@@ -67,11 +69,11 @@ file2010.close()
 fileOut = open('precincts_pvi.csv', 'wb')
 out = csv.writer(fileOut)
 
-out.writerow(['CTUPRE', 'ltr06', 'td06', 'lot06', 'ltr08', 'ltd08', 'lot08', 'ltr10', 'ltd10', 'lot10'])
+out.writerow(['CTUPRE', 'District', 'ltr06', 'ltd06', 'lot06', 'ltr08', 'ltd08', 'lot08', 'ltr10', 'ltd10', 'lot10'])
 
 for k,v in pvi.iteritems():
     try:
-            out.writerow([k, v['mnleg_06_tr'], v['mnleg_06_td'], v['mnleg_06_ot'], v['mnleg_08_tr'], v['mnleg_08_td'], v['mnleg_08_ot'], v['mnleg_10_tr'], v['mnleg_10_td'], v['mnleg_10_ot']])
+            out.writerow([k, v['district'], v['mnleg_06_tr'], v['mnleg_06_td'], v['mnleg_06_ot'], v['mnleg_08_tr'], v['mnleg_08_td'], v['mnleg_08_ot'], v['mnleg_10_tr'], v['mnleg_10_td'], v['mnleg_10_ot']])
     except KeyError:
         # Don't write a row if precinct doesn't have valid data for all races
         pass

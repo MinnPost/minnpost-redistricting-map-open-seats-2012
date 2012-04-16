@@ -30,6 +30,9 @@ def pivot():
 # Otherwise, create this district in data, with starting values
         except KeyError:
             data[row[0]] = { head[1]: int(float(row[1])), head[2]: int(float(row[2])), head[3]: int(float(row[3])), head[4]: int(float(row[4])), head[5]: int(float(row[5])), head[6]: int(float(row[6])), head[7]: int(float(row[7])), head[8]: int(float(row[8])), head[9]: int(float(row[9])) }
+# Pass if data is null
+        except ValueError:
+            pass
     iFile.close()
 
 #TODO Double check this average math
@@ -38,6 +41,27 @@ def pivot():
     oFile = file(_outputFile + ".csv", "w")
     writer = csv.writer(oFile)
     writer.writerow(["District", "pvi06", "pvi08", "pvi10", "pvi", "rpvi"])
+
+    if _year == '2002':
+        for k,v in data.iteritems():
+            pvi06 = calculatePvi(data[k]["ltr06"], data[k]["ltd06"], data[k]["lot06"])
+            pvi08 = calculatePvi(data[k]["ltr08"], data[k]["ltd08"], data[k]["lot08"])
+            pvi10 = calculatePvi(data[k]["ltr10"], data[k]["ltd10"], data[k]["lot10"])
+
+            pvi = (pvi06 + pvi08 + pvi10) / 3
+            roundedPvi = int(round(pvi))
+            if roundedPvi > 0:
+                rpvi = "GOP + " + str(abs(roundedPvi))
+            elif roundedPvi < 0:
+                rpvi = "DFL + " + str(abs(roundedPvi))
+            else:
+                rpvi = "EVEN"
+# Write to the .dbf file and to the .csv file
+            table.append((k, pvi06, pvi08, pvi10, pvi, rpvi))
+            writer.writerow([k, pvi06, pvi08, pvi10, pvi, rpvi])
+        else:
+            print '**** ' + k
+            print data[k]
 
     if _year == '2012':
 # Order cannot change for .dbf files in shapefiles. This is the original order of
@@ -94,6 +118,7 @@ def usage():
 Usage:
 \t-f --file\tinput file with extension
 \t-o --out\toutput file without extension
+\t-y --year\tyear
 """
 
 def main(argv):
@@ -116,7 +141,7 @@ def main(argv):
             global _year
             _year = arg
     if (not _inputFile) or (not _outputFile) or (not _year):
-        print """Error: must specifcy file and out"""
+        print """Error: must specifcy file, out and year"""
         usage()
         sys.exit(2)
     pivot()

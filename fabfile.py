@@ -34,6 +34,9 @@ def deploy_all():
         deploy_map(map)
         deploy_json(map)
 
+def setup_shapefiles():
+    local('data/setup_data')
+
 def calculate_shapefile(year):
     join_shapefiles(year)
     pivot_pvi(year)
@@ -80,17 +83,17 @@ def join_shapefiles(year):
 def pivot_pvi(year):
     if year == '2002':
         local('python data/dbf_to_csv.py -f data/shapefiles/precincts_pvi_2002/precincts_pvi_2002.dbf -o data/shapefiles/precincts_pvi_2002/precincts_pvi_2002.csv')
-        local('python data/pivot.py -f data/shapefiles/precincts_pvi_2002/precincts_pvi_2002.csv -o data/shapefiles/pvi_2002_leg/pvi_2002_leg')
+        local('python data/pivot.py -f data/shapefiles/precincts_pvi_2002/precincts_pvi_2002.csv -o data/shapefiles/pvi_2002_leg/pvi_2002_leg -y 2002')
 
 
     elif year == '2012':
         local('python data/dbf_to_csv.py -f data/shapefiles/precincts_pvi_2012/precincts_pvi_2012.dbf -o data/shapefiles/precincts_pvi_2012/precincts_pvi_2012.csv')
-        local('python data/pivot.py -f data/shapefiles/precincts_pvi_2012/precincts_pvi_2012.csv -o data/shapefiles/pvi_2012_leg/pvi_2012_leg')
+        local('python data/pivot.py -f data/shapefiles/precincts_pvi_2012/precincts_pvi_2012.csv -o data/shapefiles/pvi_2012_leg/pvi_2012_leg -y 2012')
 
     elif year == '2012_sen':
         local('python data/dbf_to_csv.py -f data/shapefiles/precincts_pvi_sen_2012/precincts_pvi_sen_2012.dbf -o data/shapefiles/precincts_pvi_sen_2012/precincts_pvi_sen_2012.csv')
         local('python data/csvstrip.py -f data/shapefiles/precincts_pvi_sen_2012/precincts_pvi_sen_2012.csv -o data/shapefiles/precincts_pvi_sen_2012/precincts_pvi_sen_2012_strip.csv')
-        local('python data/pivot.py -f data/shapefiles/precincts_pvi_sen_2012/precincts_pvi_sen_2012_strip.csv -o data/shapefiles/pvi_2012_sen/pvi_2012_sen')
+        local('python data/pivot.py -f data/shapefiles/precincts_pvi_sen_2012/precincts_pvi_sen_2012_strip.csv -o data/shapefiles/pvi_2012_sen/pvi_2012_sen -y 2012_sen')
 
     else:
         print 'Year not supported'

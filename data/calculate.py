@@ -54,8 +54,8 @@ r2010.next()
 
 for row in r2010:
     ctupre = row[61]
-    mnleg_pvi_d_total_10 = calculate_total(row, 31)
-    mnleg_pvi_r_total_10 = calculate_total(row, 32)
+    mnleg_pvi_r_total_10 = calculate_total(row, 31)
+    mnleg_pvi_d_total_10 = calculate_total(row, 32)
     mnleg_pvi_total_10 = calculate_total(row, 34)
 
     pvi = add_to_pvi(pvi, ctupre, 'mnleg_10_tr', mnleg_pvi_r_total_10)

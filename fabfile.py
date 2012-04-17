@@ -9,7 +9,7 @@ import warnings
 from fabric.api import local
 
 try:
-    exec(open('prject_dirs.py'))
+    exec(open('project_dirs.py'))
 except IOError:
     warnings.warn('Using default variables - please create a project_dirs.py file')
     MAPS_LIST = ['leg_redistricting, leg_redistricting_senate']

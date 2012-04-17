@@ -6,7 +6,7 @@ from pvi import calculate_pvi, add_to_pvi, calculate_total
 pvi = {}
 
 # Calculate pvi for 2006 elections
-file2006 = open('2006_results_ctu.csv', 'rU')
+file2006 = open('../2006_results_ctu.csv', 'rU')
 r2006 = csv.reader(file2006)
 
 # Skip header row
@@ -27,7 +27,7 @@ for row in r2006:
 file2006.close()
 
 # Calculate pvi for 2008 elections
-file2008 = open('2008_results_ctu.csv', 'rU')
+file2008 = open('../2008_results_ctu.csv', 'rU')
 r2008 = csv.reader(file2008)
 
 # Skip header row
@@ -46,7 +46,7 @@ for row in r2008:
 file2008.close()
 
 # Calculate pvi for 2010 elections
-file2010 = open('2010_results_ctu.csv', 'rU')
+file2010 = open('../2010_results_ctu.csv', 'rU')
 r2010 = csv.reader(file2010)
 
 # Skip header row
@@ -66,7 +66,7 @@ file2010.close()
 
 
 # Prep an out file
-fileOut = open('precincts_pvi.csv', 'wb')
+fileOut = open('../precincts_pvi.csv', 'wb')
 out = csv.writer(fileOut)
 
 out.writerow(['CTUPRE', 'District', 'ltr06', 'ltd06', 'lot06', 'ltr08', 'ltd08', 'lot08', 'ltr10', 'ltd10', 'lot10'])

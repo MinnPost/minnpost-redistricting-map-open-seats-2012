@@ -35,7 +35,6 @@ def pivot():
             pass
     iFile.close()
 
-#TODO Double check this average math
 # Create a .dbf file with proper attributes
     table = dbf.Table(_outputFile, 'District C(12); pvi06 N(15,10); pvi08 N(15,10); pvi10 N(15,10); pvi N(15,10); rpvi C(10)')
     oFile = file(_outputFile + ".csv", "w")

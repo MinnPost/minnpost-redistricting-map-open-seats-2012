@@ -12,10 +12,10 @@ try:
     exec(open('project_dirs.py'))
 except IOError:
     warnings.warn('Using default variables - please create a project_dirs.py file')
-    MAPS_LIST = ['leg_redistricting, leg_redistricting_senate']
-    MAPBOX_PROJECTS_DIRECTORY = '/Users/kevin/Documents/MapBox/project/'
-    MAPBOX_EXPORT_DIRECTORY = '/Users/kevin/Documents/MapBox/export/'
-    PROJECT_DIRECTORY = '/Users/kevin/minnpost/redistricting-map-open-seats-2012/'
+    MAPS_LIST = ['redistricting_pvi_house', 'redistricting_pvi_senate']
+    MAPBOX_PROJECTS_DIRECTORY = '/Users/minnpostproduction/Documents/MapBox/project/'
+    MAPBOX_EXPORT_DIRECTORY = '/Users/minnpostproduction/Documents/MapBox/export/'
+    PROJECT_DIRECTORY = '/Users/minnpostproduction/data_projects/redistricting-map-open-seats-2012/'
     S3_DIRECTORY_S3CMD = 's3://data.minnpost/maps/leg_districts/'
     S3_DIRECTORY = 'data.minnpost/maps/leg_districts/'
 

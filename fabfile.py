@@ -4,21 +4,24 @@ This fabfile will allow us to style, render and deploy our map tiles for the red
 """
 
 import sys
+import warnings
+
 from fabric.api import local
 
-# #
-# A list of maps to be used when calling deploy_all()
-MAPS_LIST = ['leg_redistricting, leg_redistricting_senate']
+try:
+    exec(open('prject_dirs.py'))
+except IOError:
+    warnings.warn('Using default variables - please create a project_dirs.py file')
+    MAPS_LIST = ['leg_redistricting, leg_redistricting_senate']
+    MAPBOX_PROJECTS_DIRECTORY = '/Users/kevin/Documents/MapBox/project/'
+    MAPBOX_EXPORT_DIRECTORY = '/Users/kevin/Documents/MapBox/export/'
+    PROJECT_DIRECTORY = '/Users/kevin/minnpost/redistricting-map-open-seats-2012/'
+    S3_DIRECTORY_S3CMD = 's3://data.minnpost/maps/leg_districts/'
+    S3_DIRECTORY = 'data.minnpost/maps/leg_districts/'
 
 # #
-# Directories for retrieving/storing various files
-MAPBOX_PROJECTS_DIRECTORY = '/Users/kevin/Documents/MapBox/project/'
-MAPBOX_EXPORT_DIRECTORY = '/Users/kevin/Documents/MapBox/export/'
-PROJECT_DIRECTORY = '/Users/kevin/minnpost/redistricting-map-open-seats-2012/'
-S3_DIRECTORY_S3CMD = 's3://data.minnpost/maps/leg_districts/'
-S3_DIRECTORY = 'data.minnpost/maps/leg_districts/'
-
-VERSION = '0.2'
+# When making changes, update this and in map/data/{MAPS_LIST}.json
+VERSION = 0.3
 
 # #
 # Functions

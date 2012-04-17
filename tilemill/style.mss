@@ -63,19 +63,36 @@ Map {
 #l2012[DISTRICT = "66B"][zoom = 11] { text-dy: -15; }
 #l2012[DISTRICT = "66B"][zoom = 12] { text-dy: -30; }
 #l2012[DISTRICT = "03A"][zoom = 7] { text-dy: -15; }
+#l2012[DISTRICT = "03B"][zoom = 8] { text-dy: -8; }
+#l2012[DISTRICT = "07B"][zoom = 9] { text-dy: -13; }
+#l2012[DISTRICT = "43A"][zoom = 10] { text-dx: -5; }
+#l2012[DISTRICT = "46A"][zoom = 10] { text-dx: 5; }
+#l2012[DISTRICT = "46A"][zoom = 10] { text-dy: 5; }
+#l2012[DISTRICT = "57A"][zoom = 11] { text-dy: -5; }
+#l2012[DISTRICT = "61A"][zoom = 11] { text-dx: -1; }
+#l2012[DISTRICT = "64A"][zoom = 11] { text-dx: -5; }
+#l2012[DISTRICT = "59B"][zoom = 11] { text-dy: -2; }
+#l2012[DISTRICT = "43A"][zoom = 11] { text-dx: -8; }
 
 // Senate district-level fixes
 #l2012[DISTRICT = "62"][zoom = 11] { text-min-path-length: 0; }
 #l2012[DISTRICT = "03"][zoom = 7] { text-dy: -15; }
+#l2012[DISTRICT = "34"][zoom = 9] { text-dx: 5; }
+#l2012[DISTRICT = "57"][zoom = 9] { text-dy: -5; }
+#l2012[DISTRICT = "44"][zoom = 10] { text-dx: -5; }
+#l2012[DISTRICT = "46"][zoom = 10] { text-dx: 5; }
+#l2012[DISTRICT = "65"][zoom = 10] { text-dx: 5; }
+#l2012[DISTRICT = "65"][zoom = 11] { text-dx: 10; }
 
-#l2012[MEANSPVI >= -100] { polygon-fill:@dem5; } 
-#l2012[MEANSPVI >= -40] { polygon-fill:@dem4; } 
-#l2012[MEANSPVI >= -20] { polygon-fill:@dem3; } 
-#l2012[MEANSPVI >= -10] { polygon-fill:@dem2; } 
-#l2012[MEANSPVI >= -5] { polygon-fill:@dem1; } 
-#l2012[MEANSPVI >= -0.5] { polygon-fill:@neutral; } 
-#l2012[MEANSPVI >= 0.5] { polygon-fill:@rep1; } 
-#l2012[MEANSPVI >= 5] { polygon-fill:@rep2; } 
-#l2012[MEANSPVI >= 10] { polygon-fill:@rep3; } 
-#l2012[MEANSPVI >= 20] { polygon-fill:@rep4; } 
-#l2012[MEANSPVI >= 40] { polygon-fill:@rep5; }
+#l2012[PVI >= -100] { polygon-fill:@dem5; } 
+#l2012[PVI >= -50] { polygon-fill:@dem4; } 
+#l2012[PVI >= -20] { polygon-fill:@dem3; } 
+#l2012[PVI >= -10] { polygon-fill:@dem2; } 
+#l2012[PVI >= -4] { polygon-fill:@dem1; } 
+#l2012[PVI >= -0.5] { polygon-fill:@neutral; } 
+#l2012[PVI >= 0.5] { polygon-fill:@rep1; } 
+#l2012[PVI >= 4] { polygon-fill:@rep2; } 
+#l2012[PVI >= 10] { polygon-fill:@rep3; } 
+#l2012[PVI >= 20] { polygon-fill:@rep4; } 
+#l2012[PVI >= 50] { polygon-fill:@rep5; }
+

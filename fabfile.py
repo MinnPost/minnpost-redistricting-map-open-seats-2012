@@ -47,8 +47,11 @@ def enter_precincts_shapefile():
 def enter_district_shapefiles(year):
 
     if year == '2002':
-        inFile = 'data/shapefiles/2002_districts/reprojected/tl_2010_27_sldl10.shp'
+        inFile = 'data/shapefiles/2002_leg/reprojected/tl_2010_27_sldl10.shp'
         local('shp2pgsql -s 4326 -d ' + inFile + ' districts_' + year + ' | psql -d minnpost_redistricting_2012')
+    elif year == '2002_sen':
+        inFile = 'data/shapefiles/2002_sen/reprojected/tl_2010_27_sldu10.shp'
+        local('shp2pgsql -s 4326 -d ' + inFile + ' districts_sen_2002 | psql -d minnpost_redistricting_2012')
     elif year == '2012':
         inFile = 'data/shapefiles/2012_leg/L2012.shp'
         local('shp2pgsql -s 4326 -d ' + inFile + ' districts_' + year + ' | psql -d minnpost_redistricting_2012')
@@ -64,13 +67,14 @@ def join_shapefiles(year):
     if year == '2002':
         local('mkdir -p data/shapefiles/precincts_pvi_2002')
         local('pgsql2shp -f data/shapefiles/precincts_pvi_2002/precincts_pvi_2002.shp minnpost_redistricting_2012 "SELECT districts_2002.the_geom, districts_2002.sldlst10, precincts.ltr06, precincts.ltd06, precincts.lot06, precincts.ltr08, precincts.ltd08, precincts.lot08, precincts.ltr10, precincts.ltd10, precincts.lot10 FROM districts_2002 INNER JOIN precincts ON ST_Intersects(districts_2002.the_geom, ST_Centroid(precincts.the_geom));"')
-        #local('cp data/shapefiles/precincts_pvi_2002/precincts_pvi_2002.prj data/shapefiles/pvi_2002_leg/pvi_2002_leg.prj; cp data/shapefiles/precincts_pvi_2002/precincts_pvi_2002.shp data/shapefiles/pvi_2002_leg/pvi_2002_leg.shp; cp data/shapefiles/precincts_pvi_2002/precincts_pvi_2002.shx data/shapefiles/pvi_2002_leg/pvi_2002_leg.shx')
 
+    elif year == '2002_sen':
+        local('mkdir -p data/shapefiles/precincts_pvi_sen_2002')
+        local('pgsql2shp -f data/shapefiles/precincts_pvi_sen_2002/precincts_pvi_sen_2002.shp minnpost_redistricting_2012 "SELECT districts_sen_2002.the_geom, districts_sen_2002.sldust10, precincts.ltr06, precincts.ltd06, precincts.lot06, precincts.ltr08, precincts.ltd08, precincts.lot08, precincts.ltr10, precincts.ltd10, precincts.lot10 FROM districts_sen_2002 INNER JOIN precincts ON ST_Intersects(districts_sen_2002.the_geom, ST_Centroid(precincts.the_geom));"')
 
     elif year == '2012':
         local('mkdir -p data/shapefiles/precincts_pvi_2012')
         local('pgsql2shp -f data/shapefiles/precincts_pvi_2012/precincts_pvi_2012.shp minnpost_redistricting_2012 "SELECT districts_2012.the_geom, districts_2012.district, precincts.ltr06, precincts.ltd06, precincts.lot06, precincts.ltr08, precincts.ltd08, precincts.lot08, precincts.ltr10, precincts.ltd10, precincts.lot10 FROM districts_2012 INNER JOIN precincts ON ST_Intersects(districts_2012.the_geom, ST_Centroid(precincts.the_geom));"')
-        #local('cp data/shapefiles/2012_leg/L2012.prj data/shapefiles/pvi_2012_leg/pvi_2012_leg.prj; cp data/shapefiles/precincts_pvi_2012/precincts_pvi_2012.shp data/shapefiles/pvi_2012_leg/pvi_2012_leg.shp; cp data/shapefiles/precincts_pvi_2012/precincts_pvi_2012.shx data/shapefiles/pvi_2012_leg/pvi_2012_leg.shx')
 
     elif year == '2012_sen':
         local('mkdir -p data/shapefiles/precincts_pvi_sen_2012')
@@ -85,6 +89,9 @@ def pivot_pvi(year):
         local('python data/dbf_to_csv.py -f data/shapefiles/precincts_pvi_2002/precincts_pvi_2002.dbf -o data/shapefiles/precincts_pvi_2002/precincts_pvi_2002.csv')
         local('python data/pivot.py -f data/shapefiles/precincts_pvi_2002/precincts_pvi_2002.csv -o data/shapefiles/pvi_2002_leg/pvi_2002_leg -y 2002')
 
+    elif year == '2002_sen':
+        local('python data/dbf_to_csv.py -f data/shapefiles/precincts_pvi_sen_2002/precincts_pvi_sen_2002.dbf -o data/shapefiles/precincts_pvi_sen_2002/precincts_pvi_sen_2002.csv')
+        local('python data/pivot.py -f data/shapefiles/precincts_pvi_sen_2002/precincts_pvi_sen_2002.csv -o data/shapefiles/pvi_2002_sen/pvi_2002_sen -y 2002')
 
     elif year == '2012':
         local('python data/dbf_to_csv.py -f data/shapefiles/precincts_pvi_2012/precincts_pvi_2012.dbf -o data/shapefiles/precincts_pvi_2012/precincts_pvi_2012.csv')

@@ -17,7 +17,7 @@
 
 
   <!-- Embed Start -->
-  <div class="node-body fieldlayout node-field-body">
+  <div class="">
     <style type="text/css">
     	@import url('http://data.minnpost.s3.amazonaws.com/js/leaflet-0.3.1/leaflet.css');
     	@import url('http://data.minnpost.s3.amazonaws.com/js/datatables-1.9.0/css/jquery.dataTables.css');
@@ -65,6 +65,10 @@
        */
       .tabs-tab {
         min-height: 750px;
+      }
+      .ui-widget {
+        font-family: inherit !important;
+        font-size: inherit !important;
       }
       
       .ui-tabs .ui-tabs-panel {
@@ -297,17 +301,15 @@
        * Mobile-specific rules
        */
       @media only screen and (max-width:480px) {
-      
-      .map-div {
-        display: none;
+        .map-div {
+          display: none;
+        }
+        
+        .table-div {
+          width: 100%;
+          margin: 0;
+        }
       }
-      
-      .table-div {
-        width: 100%;
-        margin: 0;
-      }
-      
-      } // end media query
     </style>
   
   <div id="minnpost-redist-wrapper" class="content node-field-body">

@@ -1,4 +1,11 @@
 # #
+#
+# These constants are pulled in by fabile.py.
+# Make sure these match your local file system.
+#
+# #
+
+# #
 # A list of maps to be used when calling deploy_all()
 MAPS_LIST = ['redistricting_pvi_house', 'redistricting_pvi_senate']
 

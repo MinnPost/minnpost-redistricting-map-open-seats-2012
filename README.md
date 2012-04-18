@@ -2,15 +2,11 @@ Data analysis and interactive map for Minnesota's 2012 districts
 
 ## Methodology
 
-Our PVI is a Minnesota-specific version of the [Cook Partisan Index (CPVI)](http://en.wikipedia.org/wiki/Cook_Partisan_Voting_Index), which measures how strongly a geographic area leans toward one political party.
+Our PVI is a Minnesota-specific version of the [Cook Partisan Voting Index (CPVI)](http://en.wikipedia.org/wiki/Cook_Partisan_Voting_Index), which measures how strongly a geographic area leans toward one political party.
 
 Each district is assigned a PVI value, which shows its political leaning. R+12, for example, denotes that district leans Republican by 12 percentage points, whereas D+2 would represent a two percentage point leaning toward the Democratic party. EVEN means a political leaning of less than one percentage point.
 
-Our calculations use three recent races:
-
-- 2006 state house
-- 2008 state house
-- 2010 state house
+Our calculations use the three most recent state house races: 2006, 2008 and 2010.
 
 Using a spatial database process, we matched up each precinct to its newly assigned district. For example, a precinct with a [geometric centroid](http://postgis.refractions.net/docs/ST_Centroid.html) in district 21A would be considered part of that district.
 

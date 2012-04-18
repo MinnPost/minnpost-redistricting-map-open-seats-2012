@@ -17,7 +17,7 @@ Using a spatial database process, we matched up each precinct to its newly assig
 We then add up the total votes for each party per 2012 district, for each race. These numbers are turned into a PVI index as follows:
 
 ```
-100 * (Votes for a republican candidate / Total number of votes) - (Votes for a democratic candidate / Total number of votes)
+100 * ((Votes for a republican candidate / Total number of votes) - (Votes for a democratic candidate / Total number of votes))
 ```
 
 This is calculated for each race. The average of these gives the overall PVI used in our visualization. These numbers are then rounded to the nearest whole number and assigned a party for readability.

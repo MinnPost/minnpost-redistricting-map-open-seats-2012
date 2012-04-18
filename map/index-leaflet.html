@@ -1,288 +1,299 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
 <head>
-  <title>Index Display</title>
-</head>
-<body>
-
-  <!-- Include styles here, as the HTML will probably be embedded into another site. -->
-  <style type="text/css">
-  	@import url('http://data.minnpost.s3.amazonaws.com/js/leaflet-0.3.1/leaflet.css');
-  	@import url('http://data.minnpost.s3.amazonaws.com/js/datatables-1.9.0/css/jquery.dataTables.css');
-  	@import url('http://data.minnpost.s3.amazonaws.com/js/jquery.ui-1.7.3/css/ui.theme.css');
-  	@import url('http://data.minnpost.s3.amazonaws.com/js/jquery.ui-1.7.3/css/ui.core.css');
-  	@import url('http://data.minnpost.s3.amazonaws.com/js/jquery.ui-1.7.3/css/ui.tabs.css');
-  </style>
-  <!--[if lte IE 8]>
-    <style>
-    	@import url('http://data.minnpost.s3.amazonaws.com/js/leaflet-0.3.1/leaflet.ie.css');
-    </style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>MinnPost</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link type="text/css" rel="stylesheet" media="all" href="http://www.minnpost.com/sites/default/files/css/css_bb801627df93671ec2cf2a1c9ecf4ad2.css" />
+  <link type="text/css" rel="stylesheet" media="screen" href="http://www.minnpost.com/sites/default/files/css/css_b833827e9fdb99e83e393d38c32a71fd.css" />
+  <link type="text/css" rel="stylesheet" media="print" href="http://www.minnpost.com/sites/default/files/css/css_dd48b5b093a35515052acfc42613d628.css" />
+  <!--[if IE]>
+      <link rel="stylesheet" href="http://www.minnpost.com/sites/default/themes/derma/inc/css/ie.css?j" type="text/css">
   <![endif]-->
-  
-  <!-- Embedded CSS -->
-  <style type="text/css">
-/**
- * CSS for redistricting map.
- */
- 
-/**
- * Map
- */
-form.redist-search {
-	float: right;
-  margin-bottom: 3%;
-  font-size: .85em;
-}
+  <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+</head>
+<body class="front logged-in page-home one-sidebar sidebar-right admin-nw admin-vertical admin-df  one-sidebar sidebar-right">
 
-.wax-tooltip {
-	position:absolute;
-	right: 10px;
-	top: 10px;
-	padding: 10px;
-	background-color: #FFFFFF;
-	opacity: 0.8;
-	border-radius: 3px;
-	-moz-border-radius: 3px;
-	min-width: 120px;
-	z-index: 9999999;
-}
-#tooltip_distname {
-  font-weight: bold;
-}
 
-/**
- * Tabs
- */
-.tabs-tab {
-  min-height: 750px;
-}
-
-.ui-tabs .ui-tabs-panel {
-  padding: 1em 0;
-}
-
-.ui-widget-header {
-  background-image: none;
-  background-color: inherit;
-  border-bottom: 1px solid #AAAAAA;
-}
-
-.ui-widget-content {
-  border: none;
-}
-
-body ul.ui-corner-all,
-li.ui-corner-top {
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
-  border-radius: 0;
-}
-
-.ui-widget-content .ui-state-default {
-  background-image: none;
-  background-color: #CDCDD0;
-}
-
-.ui-state-active, .ui-widget-content .ui-state-active {
-  background-color: #FFFFFF;
-}
-
-.ui-tabs .ui-tabs-nav li {
-  list-style: none;
-}
-
-/**
- * Legend
- */
-.legend {
-  color: #222222;
-  font-size: 70%;
-  margin-bottom: 1em;
-}
-.legend span.legend_color {
-  height: 20px;
-  width: 20px;
-  margin-right: .5em;
-  display: inline-block;
-  margin-bottom: -5px;
-}
-.legend span.legend_item {
-  margin-right: .5em;
-  font-size: 130%;
-  font-weight: bold;
-}
-.legend ul {
-  list-style: none;
-  float: left;
-  width: 40%;
-}
-.legend ul li {
-  line-height: 20px;
-  vertical-align: middle;
-  list-style: none;
-}
-
-/* R */
-.legend #leg_redistricting_r5 { background-color: #330304; }
-.legend #leg_redistricting_r4 { background-color: #3B0304; }
-.legend #leg_redistricting_r3 { background-color: #4C0406; }
-.legend #leg_redistricting_r2 { background-color: #641a1b; }
-.legend #leg_redistricting_r1 { background-color: #7a2f30; }
-
-/* E */
-.legend #leg_redistricting_e { background-color: #343030; }
-
-/* D */
-.legend #leg_redistricting_d1 { background-color: #4B5B67; }
-.legend #leg_redistricting_d2 { background-color: #243746; }
-.legend #leg_redistricting_d3 { background-color: #20313F; }
-.legend #leg_redistricting_d4 { background-color: #1C2C38; }
-.legend #leg_redistricting_d5 { background-color: #192631; }
-
-/**
- * Layout
- */
-.map-div,
-.table-div {
-  width: 50%;
-  float: left;
-  margin-bottom: 2%;
-}
-
-.table-div {
-  width: 48%;
-  margin-right: 2%;
-}
-
-.table-containter {
-  margin-bottom: 2.5em;
-}
-
-#district-map-house,
-#district-map-senate {
-  height: 600px;
-  width: 100%;
-}
-
-#minnpost-redist-wrapper h2 {
-  margin: 1em 0 .25em 0;
-}
-
-#controls-div {
-  clear: both;
-}
-
-/**
- * Tables
- */
-body table tr {
-  font-size: .75em;
-}
-
-body table.dataTable tbody tr.district-choice td,
-body table.dataTable tbody tr.even.district-choice td,
-body table.dataTable tbody tr.odd.district-choice td {
-  background-color: #63635F;
-  color: #EFEFEF;
-}
- 
-body table.dataTable tr.odd,
-body table.dataTable tr.odd td.sorting_1 {
-  background-color: #FDFDFD;
-}
-body table.dataTable tr.even,
-body table.dataTable tr.even td.sorting_1 {
-  background-color: #EDEDED;
-}
-
-table td.leaning-dfl,
-body table.dataTable td.leaning-dfl,
-body table.dataTable tr td.leaning-dfl.sorting_1 {
-  background-color: #809FBC;
-  background-color: #A8BDD1;
-}
-table td.leaning-r,
-body table.dataTable td.leaning-r,
-body table.dataTable tr td.leaning-r.sorting_1 {
-  background-color: #A75859;
-  background-color: #B9797A;
-}
-
-body table.datatable tr {
-  cursor: pointer;
-}
-
-.dataTables_length,
-.dataTables_filter,
-.dataTables_info,
-.dataTables_paginate,
-.table-help {
-  color: #888888;
-  font-size: 70%;
-}
-.dataTables_length,
-.dataTables_filter {
-  margin-bottom: .6em;
-}
-.dataTables_info,
-.dataTables_paginate {
-  margin-top: .6em;
-}
-.dataTable a.paginate_enabled_next,
-.dataTable a.paginate_enabled_previous {
-  color: #888888;
-}
-.table-help {
-  float: right;
-  width: 60%;
-  margin-top: 5px;
-  text-align: right;
-}
-
-.inc-dfl,
-.inc-r {
-  width: 20px;
-  height: 20px;
-  margin: 0 5px;
-  display: inline-block;
-}
-.inc-dfl {
-  background-color: #6F92B3;
-}
-.inc-r {
-  background-color: #964F50;
-}
-
-.inc-non-compete {
-  font-size: 85%;
-}
-.inc-non-compete .inc-dfl,
-.inc-non-compete .inc-r {
-  width: 10px;
-  height: 10px;
-  margin-left: 15px;
-}
-
-.footnote {
-  margin-top: 5em;
-  color: #888888;
-  font-size: 70%;
-}
-/**
- * Mobile-specific rules
- */
-@media only screen and (max-width:480px) {
-
-.map-div {
-  display: none;
-}
-
-.table-div {
-  width: 100%;
-  margin: 0;
-}
-
-} // end media query
-  </style>
+  <!-- Embed Start -->
+  <div class="node-body fieldlayout node-field-body">
+    <style type="text/css">
+    	@import url('http://data.minnpost.s3.amazonaws.com/js/leaflet-0.3.1/leaflet.css');
+    	@import url('http://data.minnpost.s3.amazonaws.com/js/datatables-1.9.0/css/jquery.dataTables.css');
+    	@import url('http://data.minnpost.s3.amazonaws.com/js/jquery.ui-1.7.3/css/ui.theme.css');
+    	@import url('http://data.minnpost.s3.amazonaws.com/js/jquery.ui-1.7.3/css/ui.core.css');
+    	@import url('http://data.minnpost.s3.amazonaws.com/js/jquery.ui-1.7.3/css/ui.tabs.css');
+    </style>
+    <!--[if lte IE 8]>
+      <style>
+      	@import url('http://data.minnpost.s3.amazonaws.com/js/leaflet-0.3.1/leaflet.ie.css');
+      </style>
+    <![endif]-->
+    <style type="text/css">
+      /**
+       * CSS for redistricting map.
+       */
+       
+      /**
+       * Map
+       */
+      form.redist-search {
+      	float: right;
+        margin-bottom: 3%;
+        font-size: .85em;
+      }
+      
+      .wax-tooltip {
+      	position:absolute;
+      	right: 10px;
+      	top: 10px;
+      	padding: 10px;
+      	background-color: #FFFFFF;
+      	opacity: 0.8;
+      	border-radius: 3px;
+      	-moz-border-radius: 3px;
+      	min-width: 120px;
+      	z-index: 9999999;
+      }
+      #tooltip_distname {
+        font-weight: bold;
+      }
+      
+      /**
+       * Tabs
+       */
+      .tabs-tab {
+        min-height: 750px;
+      }
+      
+      .ui-tabs .ui-tabs-panel {
+        padding: 1em 0;
+      }
+      
+      .ui-widget-header {
+        background-image: none;
+        background-color: inherit;
+        border-bottom: 1px solid #AAAAAA;
+      }
+      
+      .ui-widget-content {
+        border: none;
+      }
+      
+      body ul.ui-corner-all,
+      li.ui-corner-top {
+        -moz-border-radius: 0;
+        -webkit-border-radius: 0;
+        border-radius: 0;
+      }
+      
+      .ui-widget-content .ui-state-default {
+        background-image: none;
+        background-color: #CDCDD0;
+      }
+      
+      .ui-state-active, .ui-widget-content .ui-state-active {
+        background-color: #FFFFFF;
+      }
+      
+      .ui-tabs .ui-tabs-nav li {
+        list-style: none;
+      }
+      
+      /**
+       * Legend
+       */
+      .legend {
+        color: #222222;
+        font-size: 70%;
+        margin-bottom: 1em;
+      }
+      .legend span.legend_color {
+        height: 20px;
+        width: 20px;
+        margin-right: .5em;
+        display: inline-block;
+        margin-bottom: -5px;
+      }
+      .legend span.legend_item {
+        margin-right: .5em;
+        font-size: 130%;
+        font-weight: bold;
+      }
+      .legend ul {
+        list-style: none;
+        float: left;
+        width: 40%;
+      }
+      .legend ul li {
+        line-height: 20px;
+        vertical-align: middle;
+        list-style: none;
+      }
+      
+      /* R */
+      .legend #leg_redistricting_r5 { background-color: #330304; }
+      .legend #leg_redistricting_r4 { background-color: #3B0304; }
+      .legend #leg_redistricting_r3 { background-color: #4C0406; }
+      .legend #leg_redistricting_r2 { background-color: #641a1b; }
+      .legend #leg_redistricting_r1 { background-color: #7a2f30; }
+      
+      /* E */
+      .legend #leg_redistricting_e { background-color: #343030; }
+      
+      /* D */
+      .legend #leg_redistricting_d1 { background-color: #4B5B67; }
+      .legend #leg_redistricting_d2 { background-color: #243746; }
+      .legend #leg_redistricting_d3 { background-color: #20313F; }
+      .legend #leg_redistricting_d4 { background-color: #1C2C38; }
+      .legend #leg_redistricting_d5 { background-color: #192631; }
+      
+      /**
+       * Layout
+       */
+      .map-div,
+      .table-div {
+        width: 50%;
+        float: left;
+        margin-bottom: 2%;
+      }
+      
+      .table-div {
+        width: 48%;
+        margin-right: 2%;
+      }
+      
+      .table-containter {
+        margin-bottom: 2.5em;
+      }
+      
+      #district-map-house,
+      #district-map-senate {
+        height: 600px;
+        width: 100%;
+      }
+      
+      #minnpost-redist-wrapper h2 {
+        margin: 1em 0 .25em 0;
+      }
+      
+      #controls-div {
+        clear: both;
+      }
+      
+      /**
+       * Tables
+       */
+      body table tr {
+        font-size: .75em;
+      }
+      
+      body table.dataTable tbody tr.district-choice td,
+      body table.dataTable tbody tr.even.district-choice td,
+      body table.dataTable tbody tr.odd.district-choice td {
+        background-color: #63635F;
+        color: #EFEFEF;
+      }
+       
+      body table.dataTable tr.odd,
+      body table.dataTable tr.odd td.sorting_1 {
+        background-color: #FDFDFD;
+      }
+      body table.dataTable tr.even,
+      body table.dataTable tr.even td.sorting_1 {
+        background-color: #EDEDED;
+      }
+      
+      table td.leaning-dfl,
+      body table.dataTable td.leaning-dfl,
+      body table.dataTable tr td.leaning-dfl.sorting_1 {
+        background-color: #809FBC;
+        background-color: #A8BDD1;
+      }
+      table td.leaning-r,
+      body table.dataTable td.leaning-r,
+      body table.dataTable tr td.leaning-r.sorting_1 {
+        background-color: #A75859;
+        background-color: #B9797A;
+      }
+      
+      body table.datatable tr {
+        cursor: pointer;
+      }
+      
+      .dataTables_length,
+      .dataTables_filter,
+      .dataTables_info,
+      .dataTables_paginate,
+      .table-help {
+        color: #888888;
+        font-size: 70%;
+      }
+      .dataTables_length,
+      .dataTables_filter {
+        margin-bottom: .6em;
+      }
+      .dataTables_info,
+      .dataTables_paginate {
+        margin-top: .6em;
+      }
+      .dataTable a.paginate_enabled_next,
+      .dataTable a.paginate_enabled_previous {
+        color: #888888;
+      }
+      .table-help {
+        float: right;
+        width: 60%;
+        margin-top: 5px;
+        text-align: right;
+      }
+      
+      .inc-dfl,
+      .inc-r {
+        width: 20px;
+        height: 20px;
+        margin: 0 5px;
+        display: inline-block;
+      }
+      .inc-dfl {
+        background-color: #6F92B3;
+      }
+      .inc-r {
+        background-color: #964F50;
+      }
+      
+      .inc-non-compete {
+        font-size: 85%;
+      }
+      .inc-non-compete .inc-dfl,
+      .inc-non-compete .inc-r {
+        width: 10px;
+        height: 10px;
+        margin-left: 15px;
+      }
+      
+      .footnote {
+        margin-top: 5em;
+        color: #888888;
+        font-size: 70%;
+      }
+      /**
+       * Mobile-specific rules
+       */
+      @media only screen and (max-width:480px) {
+      
+      .map-div {
+        display: none;
+      }
+      
+      .table-div {
+        width: 100%;
+        margin: 0;
+      }
+      
+      } // end media query
+    </style>
   
   <div id="minnpost-redist-wrapper" class="content node-field-body">
     <div id="tabs">
@@ -698,13 +709,14 @@ function geocode(query, type) {
   });
 }
 
-/*
-  function convertRPVI(value) {
-    var output = '';
-    var polClass = '';
-    var name = '';
-    var per = '';
-    
+// The following is converting JSON files to tables
+function convertRPVI(value) {
+  var output = '';
+  var polClass = '';
+  var name = '';
+  var per = '';
+  
+  if (typeof value != 'undefined') {
     if (value.indexOf('R') >= 0) {
       polClass = 'r';
       name = 'GOP';
@@ -722,9 +734,15 @@ function geocode(query, type) {
     
     output += '<td class="leaning-' + polClass + '">';
     output += '<span class="leaning-party">' + name + '</span> +' + per + '</td>';
-        
-    return output;
   }
+  else {
+    output += '<td></td>';
+  }
+      
+  return output;
+}
+
+function convertData() {
   
   // Table making (remove for production)
   $.getJSON('data/open_seats_senate.json', function(data) {
@@ -797,11 +815,15 @@ function geocode(query, type) {
     }
     $('body').append($('<table>' + rows + '</table>'));
   });
-*/
+}
+
+//convertData();
 
 })(jQuery);
 
-  </script>
+    </script>
+  </div>
+  <!-- Embed End -->
         
 </body>
 </html>

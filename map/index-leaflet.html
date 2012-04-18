@@ -208,14 +208,24 @@
       table td.leaning-dfl,
       body table.dataTable td.leaning-dfl,
       body table.dataTable tr td.leaning-dfl.sorting_1 {
-        background-color: #809FBC;
-        background-color: #A8BDD1;
+        background-color: #4B5B67; /* #809FBC; #A8BDD1; */
+        color: #EFEFEF;
+      }
+      table td.leaning-dfl-major,
+      body table.dataTable td.leaning-dfl-major,
+      body table.dataTable tr td.leaning-dfl-major.sorting_1 {
+        background-color: #243746;
       }
       table td.leaning-r,
       body table.dataTable td.leaning-r,
       body table.dataTable tr td.leaning-r.sorting_1 {
-        background-color: #A75859;
-        background-color: #B9797A;
+        background-color: #7A2F30; /* #A75859; #B9797A; */
+        color: #EFEFEF;
+      }
+      table td.leaning-r-major,
+      body table.dataTable td.leaning-r-major,
+      body table.dataTable tr td.leaning-r-major.sorting_1 {
+        background-color: #641A1B;
       }
       
       body table.datatable tr {
@@ -271,6 +281,11 @@
         width: 10px;
         height: 10px;
         margin-left: 15px;
+      }
+      .retiring,
+      .retiring-symbol,
+      .inc-open {
+        color: #999999;
       }
       
       .footnote {
@@ -498,7 +513,8 @@
               </tbody>
             </table>
           </div>
-	   </div>
+          <div class="footnote">* The political leaning measures the percentage point difference between the parties in the selected elections.  <sub>&#636;</sub> Retiring incumbent.  <sub>&#402;</sub> Freshman incumbent.</div>
+        </div>
     
         <div class="map-div">
           <form id="redist-search-house" class="redist-search">
@@ -659,7 +675,8 @@
               </tbody>
             </table>
           </div>
-	   </div>
+          <div class="footnote">* The political leaning measures the percentage point difference between the parties in the selected elections.  <sub>&#636;</sub> Retiring incumbent.  <sub>&#402;</sub> Freshman incumbent.</div>
+        </div>
     
         <div class="map-div">
           <form id="redist-search-senate" class="redist-search">
@@ -714,6 +731,23 @@ redistrMap = { "house": null, "senate": null };
 redistrInteraction = { "house": null, "senate": null };
 geocoder = new google.maps.Geocoder();
 marker = {};
+
+// Plugins for DataTables
+jQuery.fn.dataTableExt.oSort['title-numeric-asc']  = function(a,b) {
+    var x = a.match(/title="*(-?[0-9\.]+)/)[1];
+    var y = b.match(/title="*(-?[0-9\.]+)/)[1];
+    x = parseFloat( x );
+    y = parseFloat( y );
+    return ((x < y) ? -1 : ((x > y) ?  1 : 0));
+};
+ 
+jQuery.fn.dataTableExt.oSort['title-numeric-desc'] = function(a,b) {
+    var x = a.match(/title="*(-?[0-9\.]+)/)[1];
+    var y = b.match(/title="*(-?[0-9\.]+)/)[1];
+    x = parseFloat( x );
+    y = parseFloat( y );
+    return ((x < y) ?  1 : ((x > y) ? -1 : 0));
+};
 
 /**
  * Document ready event.
@@ -835,6 +869,11 @@ $(document).ready(function() {
   // DataTable
   $('table').dataTable({
     'aaSorting': [[ 0, 'asc' ]],
+    "aoColumns": [
+      null,
+      null,
+      { "sType": "title-numeric" }
+    ],
     'aLengthMenu': [[10, 25, -1], [10, 25, 'All']],
     'iDisplayLength': 10,
     'bFilter': false

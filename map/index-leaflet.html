@@ -322,7 +322,7 @@
       <div id="tabs-house" class="tabs-tab">
         <div class="table-div">
           <div class="table-containter">
-            <h2>Incumbents running against the odds</h2>
+            <h2>Vulnerable Districts in 2012</h2>
             <table id="incumbents-running-house">
               <thead>
                 <tr>
@@ -350,7 +350,7 @@
                 <tr>
                   <td class="district">37B</td>
                   <td><span class="inc-r"></span><span class="">Tim Sanders</span></td>
-                  <td class="leaning-r leaning-r-major"><span title="4.049884046">GOP + 4</span></td>
+                  <td class="leaning-r leaning-r-minor"><span title="4.049884046">GOP + 4</span></td>
                 </tr>
                 <tr>
                   <td class="district">43A</td>
@@ -395,7 +395,7 @@
                 <tr>
                   <td class="district">44B</td>
                   <td><span class="inc-dfl"></span><span class="">John Benson</span></td>
-                  <td class="leaning-dfl leaning-dfl-minor"><span title="-1.577149759">DFL + -2</span></td>
+                  <td class="leaning-dfl leaning-dfl-minor"><span title="-1.577149759">DFL + 2</span></td>
                 </tr>
                 <tr>
                   <td class="district">56B</td>
@@ -435,7 +435,7 @@
                 <tr>
                   <td class="district">36B</td>
                   <td><span class="inc-dfl"></span><span class="">Melissa Hortman</span></td>
-                  <td class="leaning-dfl leaning-dfl-major"><span title="-7.495329546">DFL + -7</span></td>
+                  <td class="leaning-dfl leaning-dfl-major"><span title="-7.495329546">DFL + 7</span></td>
                 </tr>
                 <tr>
                   <td class="district">36A</td>
@@ -475,7 +475,7 @@
                 <tr>
                   <td class="district">24B</td>
                   <td><span class="inc-dfl"></span><span class="">Patti Fritz</span></td>
-                  <td class="leaning-dfl leaning-dfl-major"><span title="-4.152774144">DFL + 4</span></td>
+                  <td class="leaning-dfl leaning-dfl-minor"><span title="-4.152774144">DFL + 4</span></td>
                 </tr>
                 <tr>
                   <td class="district">17B</td>
@@ -490,7 +490,7 @@
                 <tr>
                   <td class="district">15A</td>
                   <td><span class="inc-r"></span><span class="">Sondra Erickson</span></td>
-                  <td class="leaning-r leaning-r-major"><span title="4.248065326">GOP + 4</span></td>
+                  <td class="leaning-r leaning-r-minor"><span title="4.248065326">GOP + 4</span></td>
                 </tr>
                 <tr>
                   <td class="district">21A</td>
@@ -549,7 +549,7 @@
       <div id="tabs-senate" class="tabs-tab">
         <div class="table-div">
           <div class="table-containter">
-            <h2>Incumbents running against the odds</h2>
+            <h2>Vulnerable Districts in 2012</h2>
             <table id="incumbents-running">
               <thead>
                 <tr>
@@ -617,7 +617,7 @@
                 <tr>
                   <td class="district">32</td>
                   <td><span class="inc-r"></span><span class="">Sean Nienow</span></td>
-                  <td class="leaning-r leaning-r-major"><span title="4.367376527">GOP + 4</span></td>
+                  <td class="leaning-r leaning-r-minor"><span title="4.367376527">GOP + 4</span></td>
                 </tr>
                 <tr>
                   <td class="district">36</td>
@@ -667,7 +667,7 @@
                 <tr>
                   <td class="district">54</td>
                   <td><span class="inc-dfl"></span><span class="">Katie Sieben</span></td>
-                  <td class="leaning-r leaning-r-major"><span title="4.369329923">GOP + 4</span></td>
+                  <td class="leaning-r leaning-r-minor"><span title="4.369329923">GOP + 4</span></td>
                 </tr>
                 <tr>
                   <td class="district">56</td>
@@ -876,8 +876,8 @@ $(document).ready(function() {
       null,
       { "sType": "title-numeric" }
     ],
-    'aLengthMenu': [[10, 25, -1], [10, 25, 'All']],
-    'iDisplayLength': 10,
+    'aLengthMenu': [[10, 15, 25, -1], [10, 15, 25, 'All']],
+    'iDisplayLength': 15,
     'bFilter': false
   });
   
@@ -975,10 +975,10 @@ function convertData(dataLocation) {
         var p = parseFloat(data[i]["Raw PVI"]);
         var pviClass = '';
         if (p > -0.5 && p < 0.5 ) pviClass = 'leaning-even';
-        if (p > 0.5 && p <= 4 ) pviClass = 'leaning-r leaning-r-minor';
-        if (p > 4) pviClass = 'leaning-r leaning-r-major';
-        if (p < -0.5 && p >= -4 ) pviClass = 'leaning-dfl leaning-dfl-minor';
-        if (p < -4) pviClass = 'leaning-dfl leaning-dfl-major';
+        if (p > 0.5 && p < 4.5 ) pviClass = 'leaning-r leaning-r-minor';
+        if (p >= 4.5) pviClass = 'leaning-r leaning-r-major';
+        if (p < -0.5 && p > -4.5 ) pviClass = 'leaning-dfl leaning-dfl-minor';
+        if (p <= -4.5) pviClass = 'leaning-dfl leaning-dfl-major';
         
         row += '\n                  <td class="' + pviClass + '"><span title="' + data[i]["Raw PVI"] + '">' + data[i]["Readable PVI"] + '</span></td>';
         row += '\n                </tr>';
